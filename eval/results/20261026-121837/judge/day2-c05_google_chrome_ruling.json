@@ -1,0 +1,70 @@
+{
+  "claims": [
+    {
+      "claim": "On September 2, 2024, U.S. District Judge Amit Mehta ruled that Google does not have to sell its Chrome web browser as part of an antitrust case.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "contradicted",
+      "reason": "The ruling occurred on September 2, 2025, not 2024."
+    },
+    {
+      "claim": "The ruling follows a significant legal battle that began in 2020, when the U.S. Department of Justice filed an antitrust suit against Google.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that the legal battle began in 2020 with the DOJ filing an antitrust suit against Google."
+    },
+    {
+      "claim": "Judge Mehta found that Google maintained illegal monopolies in online search through exclusive distribution agreements worth billions annually.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that Judge Mehta found Google maintained illegal monopolies through exclusive distribution agreements."
+    },
+    {
+      "claim": "While Google retains Chrome, Judge Mehta imposed requirements to share data with competitors to enhance competition in the search market.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that Judge Mehta imposed requirements for Google to share data with competitors."
+    },
+    {
+      "claim": "The ruling allows Google to continue paying device manufacturers like Apple for default search settings, which the DOJ argued unfairly limited competition.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that Google can continue paying device manufacturers for default search settings."
+    },
+    {
+      "claim": "Shares of Google parent Alphabet rose by 7.5% following the ruling, reflecting investor relief over the decision.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that Alphabet shares rose by 7.5% following the ruling."
+    },
+    {
+      "claim": "This ruling is a critical moment in the ongoing battle between Big Tech and U.S. antitrust regulators, reflecting the complexities of regulating dominant tech companies.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require citation."
+    },
+    {
+      "claim": "As AI technologies evolve, the implications of this ruling could reshape competition dynamics in the tech sector, particularly in search and advertising markets.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require citation."
+    },
+    {
+      "claim": "The decision highlights the challenges regulators face in balancing competition and innovation in rapidly changing industries.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require citation."
+    }
+  ],
+  "key_fact_contradictions": [
+    "On September 2, 2024, U.S. District Judge Amit Mehta ruled that Google does not have to sell its Chrome web browser as part of an antitrust case."
+  ]
+}

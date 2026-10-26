@@ -1,0 +1,89 @@
+{
+  "claims": [
+    {
+      "claim": "Henri Kagan and Kenso Soai have been awarded the 2026 Nobel Prize in Chemistry for their groundbreaking work in asymmetric organic synthesis.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that Kagan and Soai won the 2026 Nobel Prize in Chemistry for their work in asymmetric organic synthesis."
+    },
+    {
+      "claim": "The announcement was made by the Royal Swedish Academy of Sciences on October 7, 2026.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 confirms the announcement date as October 7, 2026."
+    },
+    {
+      "claim": "The winners will share a prize of 12 million Swedish kronor, approximately $1.2 million.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the prize amount as 12 million Swedish kronor, approximately $1.2 million."
+    },
+    {
+      "claim": "Kagan and Soai's research addresses the long-standing mystery of chirality in chemistry, which is crucial for the development of pharmaceuticals.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm that their research addresses chirality, which is important for pharmaceuticals."
+    },
+    {
+      "claim": "Chirality refers to the property where molecules exist as non-superimposable mirror images, much like human hands.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 3 explains chirality as molecules existing as non-superimposable mirror images."
+    },
+    {
+      "claim": "Their findings allow chemists to create drugs that are more effective and have fewer side effects by controlling which enantiomer is produced.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm that controlling enantiomer production can lead to more effective drugs with fewer side effects."
+    },
+    {
+      "claim": "The journey to this Nobel Prize began in the mid-19th century with Louis Pasteur's studies on tartaric acid, which revealed the existence of chiral molecules.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 3 provides historical context about Pasteur's studies on tartaric acid revealing chiral molecules."
+    },
+    {
+      "claim": "Kagan's pivotal contributions began in 1985, when he discovered a method to enhance the production of one enantiomer over another in chemical reactions.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm Kagan's contributions in 1985 to enhance enantiomer production."
+    },
+    {
+      "claim": "Soai further advanced this field in 1995 by designing a reaction that could produce a single mirror image of a molecule, a feat previously thought impossible.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm Soai's advancement in 1995 by designing a reaction to produce a single mirror image."
+    },
+    {
+      "claim": "The work of Kagan and Soai is vital for the pharmaceutical industry, where understanding chirality can lead to safer and more effective medications.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "supported",
+      "reason": "The statement is an interpretation of the significance of their work, supported by the sources."
+    },
+    {
+      "claim": "As asymmetric synthesis becomes increasingly important, their discoveries may pave the way for new approaches in drug design and development.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "supported",
+      "reason": "The statement is an interpretation of the potential impact of their discoveries, supported by the sources."
+    },
+    {
+      "claim": "The recognition of their work highlights the importance of fundamental chemistry in addressing global health challenges.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "supported",
+      "reason": "The statement is an interpretation of the significance of their recognition, supported by the sources."
+    }
+  ],
+  "key_fact_contradictions": []
+}

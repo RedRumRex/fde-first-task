@@ -1,0 +1,89 @@
+{
+  "claims": [
+    {
+      "claim": "On November 18, 2025, Cloudflare experienced a global outage that disrupted access to numerous websites and services, including X.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 1, which confirms the date and the impact on numerous websites, including X."
+    },
+    {
+      "claim": "The outage began at 11:20 UTC and lasted several hours, resulting in HTTP 500-level errors worldwide.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 1, which confirms the start time and the nature of the errors."
+    },
+    {
+      "claim": "Cloudflare's CEO, Matthew Prince, stated that the issue was not due to a cyberattack but rather a misconfiguration in their Bot Management system.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 1, which attributes the cause to a misconfiguration and not a cyberattack."
+    },
+    {
+      "claim": "The root cause was identified as a misconfigured internal feature file that exceeded a predefined size limit, crashing core proxy services.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 1, which explains the misconfiguration and its impact on the proxy services."
+    },
+    {
+      "claim": "This misconfiguration was linked to a change in database permissions that led to duplicate entries in the Bot Management feature file.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 1, which details the database permission change and its effect on the feature file."
+    },
+    {
+      "claim": "As a result, the core proxy system, which processes incoming requests, could not handle the oversized feature file, causing widespread failures.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 2, which describes the failure of the proxy system due to the oversized feature file."
+    },
+    {
+      "claim": "The outage affected various services, including Cloudflare's core CDN, CAPTCHA alternatives, and authentication systems, leading to significant disruptions.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 1, which lists the affected services and the nature of the disruptions."
+    },
+    {
+      "claim": "Cloudflare implemented a temporary workaround by bypassing the failing proxy for key services by 13:05 UTC.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 1, which confirms the implementation of a workaround by 13:05 UTC."
+    },
+    {
+      "claim": "Full service restoration was achieved by 17:06 UTC, following the identification and resolution of the underlying issue.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 1, which confirms the time of full service restoration."
+    },
+    {
+      "claim": "This incident highlights the vulnerabilities in centralized internet infrastructure and the significant impact that configuration errors can have.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    },
+    {
+      "claim": "For technical professionals, the event serves as a reminder of the importance of rigorous testing and validation of system configurations before deployment.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    },
+    {
+      "claim": "Cloudflare's rapid recovery showcases operational maturity, but the widespread disruptions indicate a need for improved internal safeguards.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    }
+  ],
+  "key_fact_contradictions": []
+}

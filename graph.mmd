@@ -9,16 +9,20 @@ graph TD;
 	drafter(drafter)
 	plant_error(plant_error)
 	checker(checker)
+	salvage(salvage)
 	reporter(reporter)
 	__end__([<p>__end__</p>]):::last
 	__start__ --> researcher;
 	checker -.-> drafter;
 	checker -.-> reporter;
+	checker -.-> salvage;
 	drafter -.-> checker;
 	drafter -.-> plant_error;
+	drafter -.-> reporter;
 	plant_error --> checker;
 	researcher -.-> drafter;
 	researcher -.-> reporter;
+	salvage --> checker;
 	reporter --> __end__;
 	classDef default fill:#f2f0ff,line-height:1.2
 	classDef first fill-opacity:0

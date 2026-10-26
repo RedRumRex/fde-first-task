@@ -1,0 +1,91 @@
+{
+  "claims": [
+    {
+      "claim": "Amazon Web Services (AWS) experienced a significant outage on October 20, 2025, disrupting services for millions of users worldwide.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the date and the widespread impact of the outage."
+    },
+    {
+      "claim": "The outage began at 11:49 PM PDT on October 19, when AWS reported elevated error rates in its US-EAST-1 region.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the start time and location of the outage."
+    },
+    {
+      "claim": "Major platforms like Snapchat and Coinbase were among those affected, highlighting the outage's widespread impact.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources mention Snapchat and Coinbase as affected platforms."
+    },
+    {
+      "claim": "AWS identified the root cause as DNS resolution problems affecting the DynamoDB service.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm DNS resolution problems affecting DynamoDB as the root cause."
+    },
+    {
+      "claim": "A latent race condition in DynamoDB's automated DNS management system triggered the outage, leading to cascading failures across dependent services.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources describe the race condition in the DNS management system as the cause of cascading failures."
+    },
+    {
+      "claim": "As a result, applications could not find the necessary endpoints, causing widespread service disruptions.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources explain that DNS issues prevented applications from finding endpoints, causing disruptions."
+    },
+    {
+      "claim": "AWS began implementing fixes by 12:26 AM PDT on October 20, restoring functionality by 2:24 AM PDT.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the timeline for implementing fixes and restoring functionality."
+    },
+    {
+      "claim": "Despite restoring DNS connectivity, many services continued to experience issues due to cascading effects from the initial outage.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources describe ongoing issues due to cascading effects even after DNS was restored."
+    },
+    {
+      "claim": "Full recovery took over a day, with normal operations restored by 11:05 AM on October 21.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "unsupported",
+      "reason": "The sources state that normal operations were fully restored by 3:01 PM PDT on October 20, not October 21."
+    },
+    {
+      "claim": "This incident underscores the fragility of cloud infrastructure and the interconnectedness of modern digital services.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "supported",
+      "reason": "This is an interpretation based on the facts presented."
+    },
+    {
+      "claim": "For organizations relying on AWS, this outage serves as a critical reminder of the risks associated with vendor lock-in and the need for diversified infrastructure.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "supported",
+      "reason": "This is an interpretation based on the facts presented."
+    },
+    {
+      "claim": "The event highlights the importance of robust failover mechanisms and the necessity for businesses to prepare for potential disruptions in cloud services.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "supported",
+      "reason": "This is an interpretation based on the facts presented."
+    }
+  ],
+  "key_fact_contradictions": [
+    "Full recovery took over a day, with normal operations restored by 11:05 AM on October 21"
+  ]
+}

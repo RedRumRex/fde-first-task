@@ -61,7 +61,7 @@ class Revision(BaseModel):
 # ---------- Checker ----------
 class ClaimVerdict(BaseModel):
     ref: str = Field(description="The sentence reference, e.g. 'T' for title or '2.3' for section 2 sentence 3")
-    verdict: Literal["supported", "partially_supported", "not_found", "contradicted", "not_a_claim"]
+    verdict: Literal["supported", "sources_disagree", "partially_supported", "not_found", "contradicted", "not_a_claim"]
     supporting_source_ids: list[str] = Field(default_factory=list, description="Which sources actually support it (may differ from the cited ones)")
     reason: str = Field(description="Short justification. For problems, say exactly which detail is wrong or missing and what the source says instead.")
 

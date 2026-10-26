@@ -7,6 +7,7 @@ from ..prompts import DRAFTER_PATCH, DRAFTER_REVISE, DRAFTER_SYSTEM, DRAFTER_USE
 from ..render import numbered_view, render_markdown, word_count
 from ..runlog import RunLogger
 from ..schemas import BlogDraft, Revision, Section, Sentence
+from ..verify import repair_citations
 
 
 def format_sources(sources: list[dict]) -> str:
@@ -85,6 +86,9 @@ def write_draft(log: RunLogger, sources: list[dict], headline: str, attempt: int
             draft = apply_fixes(prev, rev, flagged, log, node)
     else:
         draft = llm.structured(log, node, BlogDraft, msgs, temperature=0.4, max_tokens=2500)
+    fixed = repair_citations(draft, sources)
+    if fixed:
+        log.event(node, "cite_repair", f"code added the source that actually contains the figure/date: {', '.join(fixed)}")
     log.save(f"draft_v{attempt}.json", draft.model_dump())
     log.save(f"draft_v{attempt}.md", render_markdown(draft, sources))
     n_claims = sum(1 for sec in draft.sections for s in sec.sentences if s.kind == "claim")

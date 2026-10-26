@@ -38,6 +38,7 @@ class State(TypedDict, total=False):
     report_md: str
     final_post_file: Optional[str]
     failure: str  # set when an agent crashed; the run goes straight to the reporter
+    salvaged: list  # sentences removed by the last-resort salvage step
 
 
 def safe(name: str, fn):
@@ -70,8 +71,43 @@ def after_check(state: State) -> str:
     if state["check"]["passed"]:
         return "reporter"
     if state["attempt"] >= 1 + config.MAX_RETRIES:
+        if can_salvage(state):
+            return "salvage"
         return "reporter"  # out of retries: report the failure, don't loop forever
     return "drafter"
+
+
+MAX_SALVAGE = 3
+
+
+def can_salvage(state: State) -> bool:
+    """Out of drafts: if only a few individual sentences still fail, we can cut them instead of withholding the post."""
+    if state.get("salvaged") is not None:
+        return False  # one salvage only
+    errors = state["check"]["errors"]
+    refs = {e["ref"] for e in errors}
+    return bool(refs) and "post" not in refs and "T" not in refs and len(refs) <= MAX_SALVAGE
+
+
+def salvage_node(state: State, config: RunnableConfig) -> dict:
+    """Remove the sentences that still fail after the last draft, then send the post back to the full checker.
+    Deleting an unverified sentence can't add an error; the re-check (incl. the 4-fact minimum) decides if it ships."""
+    from .agents.drafter import apply_fixes
+    from .render import render_markdown
+    from .schemas import BlogDraft, Revision
+
+    log = config["configurable"]["log"]
+    errors = state["check"]["errors"]
+    refs = sorted({e["ref"] for e in errors})
+    prev = BlogDraft(**state["draft"])
+    sentences = {e["ref"]: e["sentence"] for e in errors}
+    draft = apply_fixes(prev, Revision(fixes=[]), set(refs), log, "salvage")
+    attempt = state["attempt"] + 1
+    log.event("salvage", "cut", f"removed {len(refs)} unverifiable sentence(s) {refs}; re-checking v{attempt}",
+              removed=[sentences[r] for r in refs])
+    log.save(f"draft_v{attempt}.json", draft.model_dump())
+    log.save(f"draft_v{attempt}.md", render_markdown(draft, state["sources"]))
+    return {"draft": draft.model_dump(), "attempt": attempt, "salvaged": [sentences[r] for r in refs]}
 
 
 def build_graph():
@@ -80,12 +116,14 @@ def build_graph():
     g.add_node("drafter", safe("drafter", drafter_node))
     g.add_node("plant_error", plant_node)
     g.add_node("checker", safe("checker", checker_node))
+    g.add_node("salvage", safe("salvage", salvage_node))
     g.add_node("reporter", reporter_node)
     g.add_edge(START, "researcher")
     g.add_conditional_edges("researcher", after_research, ["drafter", "reporter"])
     g.add_conditional_edges("drafter", after_draft, ["plant_error", "checker", "reporter"])
     g.add_edge("plant_error", "checker")
-    g.add_conditional_edges("checker", after_check, ["drafter", "reporter"])
+    g.add_conditional_edges("checker", after_check, ["drafter", "salvage", "reporter"])
+    g.add_edge("salvage", "checker")
     g.add_edge("reporter", END)
     return g.compile()
 

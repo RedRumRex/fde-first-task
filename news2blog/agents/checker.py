@@ -87,6 +87,12 @@ def check_draft(log: RunLogger, draft: BlogDraft, sources: list[dict], use_llm: 
             if v is None:
                 issues.append(Issue(ref=ref, sentence=s.text, type="unchecked", severity="error", detail="Checker returned no verdict.", layer="llm"))
                 continue
+            if v.verdict == "sources_disagree":
+                # the drafter matched a cited source; the sources themselves conflict -> an open doubt for the editor
+                supported_refs.add(ref)
+                issues.append(Issue(ref=ref, sentence=s.text, type="sources_disagree", severity="warning",
+                                    detail=v.reason, layer="llm"))
+                continue
             if v.verdict in ("supported", "not_a_claim"):
                 supported_refs.add(ref)
                 cited = set(s.source_ids)

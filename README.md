@@ -4,7 +4,7 @@
 
 Give it **one news link**. It reads the article, finds two other outlets covering the same event, writes a short blog post in a house tone, and then a **separate checker agent goes claim by claim** and rejects anything the sources don't back up. A post only comes out the other end if **every factual claim carries a source URL** and has been verified. A human editor approves it. Nothing is ever published automatically.
 
-> **Results in one line:** on a 14-case test set, the four-role system shipped **0 posts with wrong facts** (checked by hand), against **3** for a single-agent baseline. **100%** of its claims were supported, at **2.3¢ per run**. It did *not* raise the raw pass rate (10/14 vs 11/14), because it holds back posts when sources disagree. That's the next thing to fix.
+> **Results in one line:** on a 14-case test set, the four-role system passed **12/14** against **11/14** for a single-agent baseline. By hand review it shipped **1** wrong fact against **2**, and that one (a wrong year) is now caught by a new rule. It costs **2.5¢ per run**, and every claim carries a source URL.
 
 ---
 
@@ -37,25 +37,33 @@ Full brief: [`discovery_brief.md`](discovery_brief.md).
 
 ## 2. Results
 
-Final eval on OpenAI (`gpt-4o-mini` writer, `gpt-4.1-mini` checker, `gpt-4o` independent judge). The full table is in [`eval/results/scoreboard.md`](eval/results/scoreboard.md), and the raw per-case runs are in `eval/results/20261026-113338/`.
+The final eval ran on OpenAI (`gpt-4o-mini` writer, `gpt-4.1-mini` checker, `gpt-4o` independent judge). The full table is in [`eval/results/scoreboard.md`](eval/results/scoreboard.md), and the raw per-case runs are in `eval/results/20261026-121837/`.
 
 | | Day 1: single agent | Day 2: 4 roles + checker |
 |---|---:|---:|
-| Cases passed (of 14) | 11 | 10 |
-| Bad posts shipped (judge) | 3 | 1 → **0 after hand review** |
-| Withheld by the checker | 0 | 3 |
+| Cases passed (of 14) | 11 | **12** |
+| Bad posts shipped (judge) | 3 | 2 |
+| Bad posts shipped (after hand review) | 2 | 1, now caught by a new rule |
+| Withheld by the checker | 0 | 0 |
 | Claims with a source URL | 100% | 100% |
-| Claims supported (judge) | 96.0% | **100%** |
-| Avg drafts per run | 0.93 | 2.0 |
-| Avg cost per run | $0.0145 | $0.0232 |
+| Claims supported (judge) | 97.1% | 98.0% |
+| Avg drafts per run | 0.93 | 2.5 |
+| Avg cost per run | $0.0168 | $0.0248 |
 
-The whole eval (28 runs plus judging) cost **$0.95**.
+The eval (28 runs plus judging) cost **$1.09**.
 
-**What the numbers mean.** We checked every failure by hand:
-- **Day 1 shipped invented facts:** "over 140 AWS services affected" and "Coinbase" (in no source), an exact date the sources never give, and "the stock closed at $210" (the source only says it traded above $210).
-- **Day 2's one "bad" post is a judge false positive.** The post simply *omits* a key fact ($205.76), which the scoring rules allow.
-- **Day 2's 3 held-back posts were correct.** They were blocked because the *sources* disagreed with each other (8 vs 9 stolen Louvre items, and "Rs 500 crore" vs "5bn rupees", which are the same amount). See [Limitations](#11-limitations-and-next-steps).
-- **Honest verdict, as the brief asks:** splitting into roles **did not raise the pass rate**. It **stopped wrong facts from shipping**, at about 60% higher cost and with some good posts held back.
+**Hand review of every post the judge failed:**
+- **Day 1 shipped real hallucinations.** c08 named "Snapchat and Coinbase" in an AWS outage story when no source mentions them. c04 gave an exact date the sources never give, and said the stock "closed at $210" when the source only says it traded above $210. A third flag (c09) was a judge false positive: the post simply doesn't mention the fact.
+- **Day 2 shipped one real error.** c05 says "September 2, **2024**", but the ruling was in 2025. See [§7 #1](#7-how-we-built-it-the-journey-failures-and-fixes). The fix was **replayed on all 52 saved drafts without any API calls: it flags exactly this one, with zero false alarms.** A live re-run of c05 on the fixed code (`eval/results/20261026-123526/`, $0.03) now writes "September 2, **2025**". The judge's only remaining flag there is Reuters' "7.2%" versus AFP's "7.5 percent" for the stock move, a genuine source disagreement that `report.md` lists for the editor. The other flag (c08) follows its cited source word for word ("11:05 AM (UTC) on October 21"), while another source gives a different time, so the sources disagree rather than the post inventing anything.
+
+**How the score moved as we fixed things** (same 14 cases, OpenAI):
+
+| Round | Day 2 passed | Day 2 withheld | What changed before it |
+|---|---:|---:|---|
+| 1 | 6/14 | 7 | first version: whole-post rewrites, strict checker |
+| 2 | 10/14 | 3 | patch-only retries, 4-fact minimum, tighter checker prompt |
+| 3 | 10/14 | 4 | "sources disagree" becomes an editor note, fuller posts |
+| **4 (final)** | **12/14** | **0** | code repairs citations, last-resort salvage of 1–3 failing sentences |
 
 **Planted errors** ([`eval/results/planted_errors.md`](eval/results/planted_errors.md) on a fixture, [`planted_errors_real_run.md`](eval/results/planted_errors_real_run.md) on a real approved draft). Both gave the same result:
 
@@ -82,6 +90,8 @@ graph TD
   drafter -- "demo: --plant" --> plant_error --> checker
   checker -- "PASS" --> reporter
   checker -- "REJECT, drafts left (max 3)" --> drafter
+  checker -- "REJECT, out of retries, only 1-3 sentences fail" --> salvage
+  salvage -- "cut those sentences, re-check in full" --> checker
   checker -- "REJECT, out of retries" --> reporter
   reporter --> END([END])
 ```
@@ -170,8 +180,9 @@ sequenceDiagram
    - A **code guard** rejects pages that fail to fetch, share a domain, don't mention the key names (whole-word match), or are dated more than 60 days from the original.
 4. **Draft.** The drafter writes 350–500 words in the tone guide ([`tone_guide.md`](tone_guide.md)), using only facts from the sources and copying numbers and dates exactly.
 5. **Check.** Two layers; see [§5](#5-the-checker-in-detail).
-6. **Retry, surgically.** On rejection, the drafter gets each flagged sentence with the problem and a concrete fix hint ("Use the exact figure from the sources, or delete the sentence"). It returns `replace` or `delete` for **those sentences only**, and code merges the patch, so a retry can't break what already passed. A flagged sentence the model ignores is deleted. There are at most 3 drafts, then the run stops.
-7. **Report.** The reporter writes `report.md` (status, verdicts per draft, what was rejected and why, a cost table and open doubts) and saves the post with a banner: *"Checker-approved DRAFT. A human editor must approve it."*
+6. **Retry, surgically.** On rejection, the drafter gets each flagged sentence with the problem and a concrete fix hint ("Use the exact figure from the sources, or delete the sentence"). It returns `replace` or `delete` for **those sentences only**, and code merges the patch, so a retry can't break what already passed. A flagged sentence the model ignores is deleted. After every draft, **code repairs wrong citations**: if a number or date is in a different source than the one cited, *and that source mentions it in a sentence about the same thing*, that source is added. Text is never changed. There are at most 3 drafts.
+7. **Salvage (last resort).** If the 3rd draft fails on only 1–3 individual sentences, code **cuts those sentences** and the full checker runs again, including the 4-fact minimum. Cutting an unverified line can't add an error, and `report.md` lists every cut. Otherwise the run fails, and the post is saved as `final_post_REJECTED.md`.
+8. **Report.** The reporter writes `report.md` (status, verdicts per draft, what was rejected and why, a cost table and open doubts) and saves the post with a banner: *"Checker-approved DRAFT. A human editor must approve it."*
 
 Every run writes `runs/<run_id>/`: `log.jsonl`, `sources.json`, `draft_vN.md/json`, `check_vN.json`, `final_post.md`, `report.md` and `cost.json`. See [`deliverables/sample_run/`](deliverables/sample_run/).
 
@@ -181,14 +192,15 @@ Every run writes `runs/<run_id>/`: `log.jsonl`, `sources.json`, `draft_vN.md/jso
 
 | Layer | Checks | Why |
 |---|---|---|
-| **1. Deterministic** ([`verify.py`](news2blog/verify.py)) | Every claim has a citation and the cited IDs exist · every **number** in a claim appears in a cited source (unit-aware: `$1.5bn` = `1,500,000,000`; exact match, so 2021 ≠ 2022) · every **month-day date** appears in a cited source · the **evidence quote** is really in the source (word 5-gram overlap) · **opinion** sentences introduce no new figures or dates | Free, instant, and can't be talked into accepting a plausible "47%" |
+| **1. Deterministic** ([`verify.py`](news2blog/verify.py)) | Every claim has a citation and the cited IDs exist · every **number** in a claim appears in a cited source (unit-aware: `$1.5bn` = `1,500,000,000`; exact match, so 2021 ≠ 2022) · every **month-day date** appears in a cited source, and a full date's **year** matches what the source says for that date · the **evidence quote** is really in the source (word 5-gram overlap) · **opinion** sentences introduce no new figures or dates | Free, instant, and can't be talked into accepting a plausible "47%" |
 | **2. LLM** ([`prompts.py`](news2blog/prompts.py) `CHECKER_SYSTEM`) | A verdict for **every** sentence: `supported` / `partially_supported` / `not_found` / `contradicted` / `not_a_claim`. Opinions get verdicts too, which catches facts disguised as opinion. | Catches what code can't: unsupported claims with no digits, wrong attributions, hidden facts |
 
 **Rules that make it trustworthy:**
 - **No verdict means failure.** Missing verdicts are re-asked, then sent to a backup checker model. If a claim still has no verdict, the run fails instead of passing.
 - **A post needs at least 4 cited facts.** A post that deleted its way down to nothing can't pass.
 - **The evidence quote is an audit aid.** If the LLM verified the claim against the full sources, a paraphrased quote is downgraded to a warning.
-- **Source disagreement isn't a contradiction.** If the sentence matches its cited source, it's supported. (The eval shows the model still struggles with this; see Limitations.)
+- **Source disagreement isn't the writer's error.** If a sentence matches its cited source but another source differs (8 vs 9 items), the verdict is `sources_disagree`. That's a warning listed for the editor in `report.md`, not a rejection.
+- **Years are checked in context.** A full date ("September 2, 2024") must match the year a cited source gives for that date, or the year the source was published. A "2024" in an unrelated sentence doesn't count as support.
 
 ---
 
@@ -209,7 +221,7 @@ Every run writes `runs/<run_id>/`: `log.jsonl`, `sources.json`, `draft_vN.md/jso
 Takes a clean approved draft, plants each error, and checks that the checker rejects **the planted sentence specifically**, with a clean control that must pass. It runs on a fixture or on any real run (`--from-run`), and `--offline` tests the code layer with no API calls.
 
 ### Offline test suite: [`tests/`](tests/)
-39 tests run in under a second with a **fake LLM and fake web**, covering: graph routing, the retry cap, the dead link, planted errors, the patch-only revision, "no verdict never passes", the thin-post rule, the invented-URL guard, the year-tolerance bug, model resolution, error classification and the eval scoring. **Each real failure we hit has a regression test.**
+46 tests run in under a second with a **fake LLM and fake web**, covering: graph routing, the retry cap, the dead link, planted errors, the patch-only revision, "no verdict never passes", the thin-post rule, the invented-URL guard, the year-tolerance bug, model resolution, error classification and the eval scoring. **Each real failure we hit has a regression test.**
 
 ---
 
@@ -219,13 +231,15 @@ We followed the sprint plan: **checker prompt and test set first, then a working
 
 | # | What went wrong (found in…) | Fix | Lesson |
 |---|---|---|---|
-| 1 | **The researcher invented a source.** It made up an NBC URL (`…rcna123456`), NBC redirected it to a 2023 article about pandas, and a loose relevance check (`"intel"` matched `"Intelligence"`) let it in. *(first live run)* | Fetch only URLs returned by search · whole-word key-name match · reject pages dated more than 60 days from the original | Guard an agent's **tools**, not just its output |
-| 2 | **A PASS with nothing checked.** One checker model returned empty verdict lists, "no verdict" was only a warning, and a draft passed with 2 of 11 claims checked. *(live run)* | Silence counts as failure: re-ask, then a backup model, then refuse to pass | "No news" from a checker isn't good news |
-| 3 | **Our own planted test found a bug.** A planted `2022 → 2021` passed the code layer because a 0.1% number tolerance treated the two years as equal. *(planted suite)* | Exact numeric matching | Planted errors test your **checker**, not just your writer |
-| 4 | **Rewrites made drafts worse.** Full-post retries added new errors and once **deleted every fact**, so an empty post passed. *(eval round 1)* | Patch-only revisions merged by code · minimum of 4 cited facts | Constrain *what* a retry is allowed to change |
-| 5 | **An over-strict opinion rule.** "The extra 5% warrant…" was rejected three times, although 5% was cited two sentences earlier. *(live run)* | Opinions may repeat figures already cited in the post | A rule that's too strict just makes the drafter loop |
-| 6 | **An unfair judge.** It counted analysis sentences ("this validates…") as uncited facts. *(eval round 1)* | The judge labels `fact` vs `interpretation`, and only facts are scored | Your metric needs its own scrutiny |
-| 7 | **Provider limits.** Groq's free tier allows about 8K tokens a minute and 200K a day **per model**, and an unavailable model (`llama-3.3-70b`) crashed a run. Qwen broke JSON output (thousands of `\r` characters). OpenAI's free tier allowed only 50 requests a day. | Pick models from the ones the key can actually use · a client-side throttle · JSON-schema mode with function-calling fallback · resumable eval · switched to OpenAI for the final eval | Infrastructure limits are product constraints; design for them |
+| 1 | **A wrong year "was in the source".** The final eval's only real Day 2 error: "September 2, **2024**" (the ruling was in 2025). "2024" appeared in the source in an unrelated sentence, so the number check passed it, and the new citation repair even added a second source for the same reason. *(final eval)* | A year check for full dates · citation repair only accepts a source that mentions the figure in a sentence about the same thing · **replayed on all 52 saved drafts: catches exactly this one, no false alarms** | "The number appears in the source" isn't the same as "the source says this" |
+| 2 | **The researcher invented a source.** It made up an NBC URL (`…rcna123456`), NBC redirected it to a 2023 article about pandas, and a loose relevance check (`"intel"` matched `"Intelligence"`) let it in. *(first live run)* | Fetch only URLs returned by search · whole-word key-name match · reject pages dated more than 60 days from the original | Guard an agent's **tools**, not just its output |
+| 3 | **A PASS with nothing checked.** One checker model returned empty verdict lists, "no verdict" was only a warning, and a draft passed with 2 of 11 claims checked. *(live run)* | Silence counts as failure: re-ask, then a backup model, then refuse to pass | "No news" from a checker isn't good news |
+| 4 | **Our own planted test found a bug.** A planted `2022 → 2021` passed the code layer because a 0.1% number tolerance treated the two years as equal. *(planted suite)* | Exact numeric matching | Planted errors test your **checker**, not just your writer |
+| 5 | **Rewrites made drafts worse.** Full-post retries added new errors and once **deleted every fact**, so an empty post passed. *(eval round 1)* | Patch-only revisions merged by code · minimum of 4 cited facts | Constrain *what* a retry is allowed to change |
+| 6 | **An over-strict opinion rule.** "The extra 5% warrant…" was rejected three times, although 5% was cited two sentences earlier. *(live run)* | Opinions may repeat figures already cited in the post | A rule that's too strict just makes the drafter loop |
+| 7 | **An unfair judge.** It counted analysis sentences ("this validates…") as uncited facts. *(eval round 1)* | The judge labels `fact` vs `interpretation`, and only facts are scored | Your metric needs its own scrutiny |
+| 8 | **Correct posts held back.** The checker rejected sentences when the *sources* disagreed (8 vs 9 Louvre items), and one bad sentence sank a whole post. *(eval rounds 2–3)* | A `sources_disagree` verdict that becomes an editor note · code repairs citations · last-resort salvage | Distinguish the writer's errors from the world's ambiguity |
+| 9 | **Provider limits.** Groq's free tier allows about 8K tokens a minute and 200K a day **per model**, and an unavailable model (`llama-3.3-70b`) crashed a run. Qwen broke JSON output (thousands of `\r` characters). OpenAI's free tier allowed only 50 requests a day. | Pick models from the ones the key can actually use · a client-side throttle · JSON-schema mode with function-calling fallback · resumable eval · switched to OpenAI for the final eval | Infrastructure limits are product constraints; design for them |
 
 ---
 
@@ -255,7 +269,7 @@ fde-first/
 ├── deliverables/
 │   ├── sample_run/            ← deliverables 4 and 5: report.md, log.jsonl, cost.json (OpenAI)
 │   └── sample_run_groq/       ← the same demo on Groq, for comparison
-└── tests/                     ← 39 offline tests (fake LLM, no API keys needed)
+└── tests/                     ← 46 offline tests (fake LLM, no API keys needed)
 ```
 
 ---
@@ -267,7 +281,7 @@ git clone https://github.com/RedRumRex/fde-first-task.git && cd fde-first-task
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env            # add your keys (see below)
-python -m pytest -q             # 39 offline tests, no keys needed
+python -m pytest -q             # 46 offline tests, no keys needed
 ```
 
 `.env` for OpenAI (used for the final results):
@@ -312,12 +326,13 @@ Everything is set in `.env` (see [`.env.example`](.env.example)):
 
 ## 11. Limitations and next steps
 
-- **Source disagreement blocks good posts.** This caused all 3 of Day 2's withheld posts. **Next:** report conflicts as open doubts for the editor instead of rejecting the sentence.
 - **We check against sources, not the truth.** "Supported" means a source says it. That's why we use 3 independent outlets and a human approves.
+- **The final eval predates the last fix.** The year rule was proven by replay on saved drafts and a live re-run of the failing case, not by a fresh full eval, to save API budget.
+- **Units and qualifiers** (for example "(UTC)") aren't yet checked by code, and c08 dropped one.
 - **Syndicated copies** of one wire story can look like independent corroboration. **Next:** near-duplicate text detection.
-- **Posts are short** (about 200 words with `gpt-4o-mini`), because the drafter is told to delete when in doubt. A stronger drafter model or a length check would help.
+- **Salvage shortens posts.** It only cuts sentences that fail, but a heavily salvaged post can get thin, though never below 4 cited facts.
 - **The tone guide is a placeholder** until the customer shares theirs.
-- **The judge is an LLM too.** We review every failure by hand, and that review found one judge false positive.
+- **The judge is an LLM too.** We review every failure by hand: 2 of the 5 judge flags in the final eval were wrong or debatable.
 
 ---
 

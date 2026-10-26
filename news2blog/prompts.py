@@ -11,10 +11,15 @@ For EVERY sentence labelled CLAIM, including [T] (the headline), output exactly 
 - partially_supported: the gist is in a source, but a SPECIFIC checkable detail (a number, a date, a name, a quote, or a factual
   qualifier such as "first", "record", "all", "only") is missing from the sources or overstated. Do NOT use it for tone or
   wording ("significant", "major"), for fair paraphrase or summary, or for details the sentence does not actually assert.
+  Faithfully reporting what a source reports ("X expects...", "according to...", "aims to...") is supported, even if the
+  source itself only reports it.
 - not_found: no source states this.
-- contradicted: the SENTENCE conflicts with a source (for example a different date or figure). Say exactly what the source says.
-  If the sentence matches at least one cited source but the sources disagree with each other, that is supported: note the
-  disagreement in the reason, do not reject the sentence for it.
+- sources_disagree: the sentence matches what at least one CITED source says, but another source gives a different figure,
+  date or detail (e.g. one outlet says 8 items, another says 9). This is NOT the writer's error: name the disagreement in the
+  reason so the editor sees it. Also use this when sources say the same thing in different units or wording
+  ("Rs 500 crore" = "5bn rupees"), or in that case simply use supported.
+- contradicted: the sentence conflicts with ALL of its cited sources (for example a different date or figure). Say exactly
+  what the source says.
 - not_a_claim: the sentence asserts no fact.
 
 Rules:
@@ -47,7 +52,8 @@ Hard rules:
 4. The headline must be supported by the sources; list its sources in `title_source_ids`.
 5. Never put citation markers like [1] or (S1) in the text; citations go in `source_ids` only.
 6. One fact-bearing idea per sentence makes checking easier. Prefer citing two sources when both state the fact.
-7. Length: 350-500 words, 3-4 sections. The final section is headed "Why it matters".
+7. Length: 350-500 words, 3-4 sections, at least 8 claim sentences. Use facts from ALL the sources, not just S1.
+   The final section is headed "Why it matters".
 
 TONE GUIDE (follow it):
 {tone_guide}
@@ -127,5 +133,6 @@ pipeline's checker. You receive the SOURCES, a list of reference KEY FACTS check
 2. For each statement: has_citation = does the sentence containing it carry at least one citation link;
    verdict = supported (a source states it, all details match), unsupported (no source states it, or a detail is missing/invented),
    contradicted (a source or key fact says something different).
-3. List any KEY FACT that the post states differently (wrong number, date, or name). Omitting a key fact is fine.
+3. List a KEY FACT only if the post makes a statement about that same fact with a DIFFERENT value (wrong number, date or
+   name), and quote the post's wording. If the post simply does not mention a key fact, that is fine: do NOT list it.
 Judge only against the sources and key facts, not your own knowledge."""

@@ -1,0 +1,82 @@
+{
+  "claims": [
+    {
+      "claim": "The U.S. government will receive 433.3 million shares of Intel common stock at a price of $20.47 per share.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by sources 1 and 3, which confirm the number of shares and the price per share."
+    },
+    {
+      "claim": "This investment totals approximately $8.9 billion, adding to the $2.2 billion in grants Intel has previously received under the CHIPS Act.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by sources 2 and 3, which confirm the total investment amount and the previous grants."
+    },
+    {
+      "claim": "Intel's CEO, Lip-Bu Tan, emphasized the importance of this investment for American technology and manufacturing leadership.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by source 1, which includes a quote from Intel's CEO about the importance of the investment."
+    },
+    {
+      "claim": "The agreement allows the U.S. government to vote with Intel's board on shareholder matters, but it will not have a board seat.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by sources 1 and 3, which confirm the voting rights and lack of a board seat for the government."
+    },
+    {
+      "claim": "Additionally, the government has the option to purchase an additional 5% stake in Intel within five years under specific conditions.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by sources 1 and 3, which detail the warrant for an additional 5% stake."
+    },
+    {
+      "claim": "This move has sparked discussions about the future of corporate America and potential similar deals with other chipmakers.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by source 2, which mentions discussions about similar deals."
+    },
+    {
+      "claim": "Intel's stake is seen as a critical step in ensuring the company retains control over its foundry business.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by source 2, which discusses the importance of the stake for Intel's foundry business."
+    },
+    {
+      "claim": "The administration has indicated it may pursue similar stakes in other companies benefiting from the CHIPS Act.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by source 1, which mentions the administration's interest in similar deals."
+    },
+    {
+      "claim": "This investment reflects a significant commitment by the U.S. government to bolster domestic semiconductor manufacturing.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "The statement is an interpretation and does not require a citation, but it is not directly supported by the sources."
+    },
+    {
+      "claim": "For builders and tech professionals, this could signal increased federal involvement in the tech sector and potential shifts in funding dynamics.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "The statement is an interpretation and does not require a citation, but it is not directly supported by the sources."
+    },
+    {
+      "claim": "The long-term implications of this deal may reshape how semiconductor companies operate and collaborate with government entities.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "The statement is an interpretation and does not require a citation, but it is not directly supported by the sources."
+    }
+  ],
+  "key_fact_contradictions": []
+}

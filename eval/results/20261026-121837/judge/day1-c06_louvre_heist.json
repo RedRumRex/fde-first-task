@@ -1,0 +1,96 @@
+{
+  "claims": [
+    {
+      "claim": "On October 19, 2025, thieves executed a brazen daylight robbery at the Louvre Museum in Paris, stealing eight pieces of the French Crown Jewels valued at approximately €88 million.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the date, location, number of items stolen, and the estimated value of the stolen jewels."
+    },
+    {
+      "claim": "The theft occurred around 9:30 a.m., shortly after the museum opened to visitors, and lasted less than eight minutes in total.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the time of the theft, its duration, and that it happened shortly after the museum opened."
+    },
+    {
+      "claim": "Using a vehicle-mounted mechanical lift, the thieves accessed the Galerie d'Apollon through a balcony, cutting through a window to gain entry.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the use of a mechanical lift and entry through a balcony by cutting a window."
+    },
+    {
+      "claim": "Once inside, they smashed display cases and threatened guards with power tools, escaping on scooters just minutes later.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the smashing of display cases, the use of power tools, and the escape on scooters."
+    },
+    {
+      "claim": "Among the stolen items were a tiara and brooch belonging to Empress Eugénie, an emerald necklace and earrings from Empress Marie-Louise, and several pieces from the sapphire set of Queen Marie-Amélie and Queen Hortense.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the specific items stolen, including those belonging to Empress Eugénie, Empress Marie-Louise, and the sapphire set."
+    },
+    {
+      "claim": "The thieves attempted to steal Empress Eugénie's crown but dropped it during their escape, leaving it damaged and recovered later.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the attempted theft of Empress Eugénie's crown, its damage, and recovery."
+    },
+    {
+      "claim": "The total value of the stolen items is estimated at €88 million, making this one of the most significant art thefts in recent history.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the estimated value of the stolen items and the significance of the theft."
+    },
+    {
+      "claim": "The robbery has raised serious questions about the Louvre's security measures, with reports indicating that many areas lacked adequate CCTV coverage.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the lack of adequate CCTV coverage and the security concerns raised by the robbery."
+    },
+    {
+      "claim": "French authorities have launched a major investigation, with over 100 investigators assigned to the case, and several suspects have already been arrested.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the scale of the investigation, the number of investigators, and the arrests made."
+    },
+    {
+      "claim": "Interior Minister Laurent Nuñez acknowledged security failures and ordered a reassessment of security measures across cultural sites in France.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the acknowledgment of security failures by Laurent Nuñez and the order for reassessment of security measures."
+    },
+    {
+      "claim": "The Louvre heist highlights not only the vulnerability of cultural institutions but also the need for enhanced security measures to protect invaluable heritage.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation of the significance of the heist and does not require factual support."
+    },
+    {
+      "claim": "The incident has sparked a national conversation about the preservation of France's cultural assets and the responsibilities of those who manage them.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation of the broader impact of the heist and does not require factual support."
+    },
+    {
+      "claim": "For builders and museum professionals, the heist serves as a critical reminder of the importance of integrating security into the design and operation of public spaces.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation of the lessons learned from the heist and does not require factual support."
+    }
+  ],
+  "key_fact_contradictions": []
+}

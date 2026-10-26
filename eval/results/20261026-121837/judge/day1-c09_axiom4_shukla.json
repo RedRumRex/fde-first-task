@@ -1,0 +1,91 @@
+{
+  "claims": [
+    {
+      "claim": "On June 25, 2025, the Axiom 4 spaceflight lifted off from Florida, carrying Indian Air Force pilot Shubhanshu Shukla.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the launch date and location, as well as Shukla's participation."
+    },
+    {
+      "claim": "Shukla is the second Indian citizen to travel to space, following Rakesh Sharma's journey in 1984.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm Shukla is the second Indian in space after Rakesh Sharma."
+    },
+    {
+      "claim": "The mission is a collaboration between Axiom Space, NASA, and the Indian Space Research Organisation (ISRO).",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the collaboration between Axiom Space, NASA, and ISRO."
+    },
+    {
+      "claim": "As a pilot, Shukla will assist in spacecraft operations and conduct scientific experiments during the mission.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm Shukla's role in assisting spacecraft operations and conducting experiments."
+    },
+    {
+      "claim": "The Axiom 4 crew includes astronauts from the US, Poland, and Hungary, alongside Shukla.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the nationalities of the other astronauts on the mission."
+    },
+    {
+      "claim": "Shukla's mission will involve conducting 60 scientific experiments, including seven from India.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the number of experiments and that seven are from India."
+    },
+    {
+      "claim": "Shukla's journey has generated significant interest in India, symbolizing a new era in the country's space exploration efforts.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources mention the interest and significance of the mission in India."
+    },
+    {
+      "claim": "Prime Minister Narendra Modi expressed pride in Shukla's accomplishment, highlighting the hopes of 1.4 billion Indians.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm Modi's statement and the sentiment expressed."
+    },
+    {
+      "claim": "Shukla's mission aims to inspire future generations of Indian astronauts and scientists.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources discuss the inspirational aspect of the mission."
+    },
+    {
+      "claim": "The Axiom 4 mission represents a significant step for India's human spaceflight program, integrating with ISRO's Gaganyaan initiative.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources discuss the significance of the mission for India's space program."
+    },
+    {
+      "claim": "This mission not only enhances India's capabilities in space exploration but also fosters international collaboration.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources mention the enhancement of capabilities and international collaboration."
+    },
+    {
+      "claim": "Shukla's experience will be invaluable for India's future space missions, including Gaganyaan and potential lunar explorations.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources discuss the potential future benefits of Shukla's experience."
+    }
+  ],
+  "key_fact_contradictions": [
+    "The mission lifted off from Launch Complex 39A at 2:31 am ET on June 25."
+  ]
+}

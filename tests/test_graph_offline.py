@@ -22,7 +22,9 @@ def test_rejects_then_passes(world):
     assert len(out["sources"]) == 3 and len({s["domain"] for s in out["sources"]}) == 3
 
 
-def test_stops_after_max_retries(world):
+def test_stops_after_max_retries(world, monkeypatch):
+    from news2blog import graph
+    monkeypatch.setattr(graph, "MAX_SALVAGE", 0)  # salvage off: pure retry cap
     world([bad_draft()], stubborn=True)
     out = run_pipeline(SOURCES[0]["url"], quiet=True, base=world.tmp)
     assert out["status"].startswith("FAILED")
@@ -162,3 +164,55 @@ def test_post_with_no_facts_never_passes(tmp_path):
     d.sections = [d.sections[-1]]  # only "Why it matters" left: 2 claims + 1 opinion
     res = check_draft(RunLogger(base=tmp_path, quiet=True), d, SOURCES, use_llm=False)
     assert not res.passed and any(i.type == "post_too_thin" for i in res.errors())
+
+
+def test_source_disagreement_is_a_note_not_a_rejection(world, monkeypatch, tmp_path):
+    """Eval: 3 correct posts were withheld because outlets disagreed (8 vs 9 Louvre items). Now an editor note."""
+    from news2blog import llm
+    from news2blog.agents.checker import check_draft
+    from news2blog.runlog import RunLogger
+    from news2blog.schemas import BlogDraft, CheckerLLMOutput, ClaimVerdict
+    from news2blog.verify import iter_sentences
+    d = BlogDraft(**CLEAN)
+
+    def checker_llm(log, node, schema, messages, **kw):
+        return CheckerLLMOutput(verdicts=[ClaimVerdict(ref=r, verdict=("sources_disagree" if r == "1.2" else "supported" if s.kind == "claim" else "not_a_claim"),
+                                                       reason="S1 says 433.3 million shares; S9 says 430 million" if r == "1.2" else "ok")
+                                          for r, s in iter_sentences(d)])
+    monkeypatch.setattr(llm, "structured", checker_llm)
+    res = check_draft(RunLogger(base=tmp_path, quiet=True), d, SOURCES)
+    assert res.passed
+    assert [(i.ref, i.type, i.severity) for i in res.issues if i.type == "sources_disagree"] == [("1.2", "sources_disagree", "warning")]
+
+
+def test_salvage_cuts_the_last_bad_sentence_and_rechecks(world):
+    """Eval: 4 posts were withheld because ONE sentence still failed after 3 drafts. Salvage cuts it, then re-checks."""
+    world([bad_draft()], stubborn=True)
+    out = run_pipeline(SOURCES[0]["url"], quiet=True, base=world.tmp)
+    assert out["status"].startswith("PASSED")
+    assert [h["passed"] for h in out["history"]] == [False, False, False, True]   # v4 = salvage, re-checked
+    assert out["salvaged"] == ["Intel shares jumped 38% on the news."]
+    post = (Path(out["run_dir"]) / "final_post.md").read_text()
+    assert "38%" not in post
+    assert "Sentences cut by the salvage step" in (Path(out["run_dir"]) / "report.md").read_text()
+
+
+def test_salvage_never_ships_a_post_with_too_few_facts(world, monkeypatch):
+    """Cutting sentences must still respect the 4-fact minimum: the re-check refuses a gutted post."""
+    monkeypatch.setattr(config, "MIN_CLAIMS", 99)  # every post is 'too thin' -> post-level error -> no salvage
+    world([CLEAN])
+    out = run_pipeline(SOURCES[0]["url"], quiet=True, base=world.tmp)
+    assert out["status"].startswith("FAILED") and not out.get("salvaged")
+
+
+def test_wrong_citation_is_repaired_by_code():
+    """Eval c10: 'June 12, 2025' was in S3 but cited S1/S2. Code adds S3; text is never changed."""
+    from news2blog.schemas import BlogDraft, Sentence
+    from news2blog.verify import repair_citations, deterministic_check
+    d = BlogDraft(**CLEAN)
+    d.sections[1].sentences[1] = Sentence(text="That includes $5.7 billion from the CHIPS and Science Act.", kind="claim",
+                                          source_ids=["S1"], evidence="the option to buy another 5% of Intel's common shares")
+    assert any(i.type == "wrong_citation" for i in deterministic_check(d, SOURCES))
+    changes = repair_citations(d, SOURCES)
+    assert changes and d.sections[1].sentences[1].source_ids[0] == "S1" and len(d.sections[1].sentences[1].source_ids) == 2
+    assert not any(i.type == "wrong_citation" and i.ref == "2.2" for i in deterministic_check(d, SOURCES))

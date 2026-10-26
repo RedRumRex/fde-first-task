@@ -1,0 +1,91 @@
+{
+  "claims": [
+    {
+      "claim": "On September 2, 2025, U.S. District Judge Amit Mehta ruled that Google will not be required to sell its Chrome web browser as part of an antitrust case.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by all three sources, which confirm the date and the ruling by Judge Amit Mehta."
+    },
+    {
+      "claim": "The ruling comes after a lengthy legal battle that began with a lawsuit from the Justice Department in 2020, alleging Google maintained illegal monopolies in online search.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the lawsuit began in 2020 and involved allegations of Google maintaining illegal monopolies."
+    },
+    {
+      "claim": "Judge Mehta found that Google's exclusive agreements with device manufacturers contributed to its monopoly status.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm that Judge Mehta found Google's agreements with device manufacturers contributed to its monopoly."
+    },
+    {
+      "claim": "While Google retains ownership of Chrome, the judge imposed significant requirements aimed at restoring competition in the search engine market.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm that the judge imposed requirements to restore competition while allowing Google to retain Chrome."
+    },
+    {
+      "claim": "Google must share specific search index data and user interaction information with competitors, although it will not have to share advertising data.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm that Google is required to share search index and user interaction data but not advertising data."
+    },
+    {
+      "claim": "The ruling also allows Google to continue making payments to device manufacturers for preloading its search engine, provided these deals are not exclusive.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm that Google can continue payments for preloading its search engine as long as the deals are not exclusive."
+    },
+    {
+      "claim": "Google's stock rose by 7.2% in after-hours trading following the ruling, indicating investor relief and optimism.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm that Google's stock rose by 7.2% in after-hours trading."
+    },
+    {
+      "claim": "Some observers expressed disappointment, suggesting the ruling did not go far enough to challenge Google's market dominance.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources include opinions from observers expressing disappointment with the ruling."
+    },
+    {
+      "claim": "Google has indicated it may appeal the ruling, which could prolong the legal battle.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm that Google may appeal the ruling."
+    },
+    {
+      "claim": "This ruling is significant as it represents a major moment in the ongoing scrutiny of Big Tech by U.S. regulators.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "The statement is an interpretation and does not require a citation, but it is not directly supported by the sources."
+    },
+    {
+      "claim": "For builders and developers, the implications of data-sharing requirements could reshape the competitive landscape in search and AI.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "The statement is an interpretation and does not require a citation, but it is not directly supported by the sources."
+    },
+    {
+      "claim": "The decision reflects a balancing act between maintaining competition and avoiding drastic measures that could disrupt the tech ecosystem.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "The statement is an interpretation and does not require a citation, but it is not directly supported by the sources."
+    }
+  ],
+  "key_fact_contradictions": [
+    "Alphabet shares rose about 7.5 percent in after-hours trading."
+  ]
+}

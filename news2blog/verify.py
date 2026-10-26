@@ -32,6 +32,10 @@ _NUM_RE = re.compile(r"(?<![\w.])(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)(?:
 _MD_RE = re.compile(_MONTH_RE + r"\.?\s+(\d{1,2})(?:st|nd|rd|th)?\b", re.I)
 _DM_RE = re.compile(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+(?:of\s+)?" + _MONTH_RE + r"\b", re.I)
 _ISO_RE = re.compile(r"\b(20\d\d)-(\d\d)-(\d\d)\b")
+# "September 2, 2025" / "Sept. 2 2025" / "2 September 2025"
+_MDY_RE = re.compile(_MONTH_RE + r"\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(20\d\d)\b", re.I)
+_DMY_RE = re.compile(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+(?:of\s+)?" + _MONTH_RE + r",?\s+(20\d\d)\b", re.I)
+_STOP = set("that this with from have will were been their they which about after into over than also more most said says what when where while would could should there these those under other only some such".split())
 
 
 def normalize(s: str) -> str:
@@ -104,6 +108,35 @@ def source_month_days(text: str) -> set[tuple[int, int]]:
     for m in _ISO_RE.finditer(text):
         out.add((int(m.group(2)), int(m.group(3))))
     return out
+
+
+def full_dates(text: str) -> set[tuple[int, int, int]]:
+    out = set()
+    for m in _MDY_RE.finditer(text):
+        out.add((_month(m.group(1)), int(m.group(2)), int(m.group(3))))
+    for m in _DMY_RE.finditer(text):
+        out.add((_month(m.group(2)), int(m.group(1)), int(m.group(3))))
+    for m in _ISO_RE.finditer(text):
+        out.add((int(m.group(2)), int(m.group(3)), int(m.group(1))))
+    return out
+
+
+def _content_words(text: str) -> set[str]:
+    return {w for w in re.findall(r"[a-z]+", text.lower()) if len(w) >= 4 and w not in _STOP}
+
+
+def cooccurs(claim: str, source_text: str, needle: str | None = None, vals: set[float] | None = None, md=None,
+             min_overlap: float = 0.3) -> bool:
+    """Does the source mention this figure/date in a sentence that is ABOUT the same thing as the claim?
+    (A '2024' in an unrelated sentence must not count as support.)"""
+    cw = _content_words(claim)
+    if not cw:
+        return True
+    for sent in re.split(r"(?<=[.!?])\s+", source_text):
+        hit = (vals is not None and _num_in(vals, source_numbers(sent))) or (md is not None and md in source_month_days(sent))
+        if hit and len(cw & _content_words(sent)) / len(cw) >= min_overlap:
+            return True
+    return False
 
 
 # ---------------- evidence ----------------
@@ -187,6 +220,25 @@ def deterministic_check(draft: BlogDraft, sources: list[dict]) -> list[Issue]:
             else:
                 add(ref, s, "date_not_in_source", "error", f"Date '{label}' does not appear in any source.")
 
+        # a full date ("September 2, 2024") whose exact form no cited source contains must at least carry the
+        # year the cited sources were published in: catches a wrong year that happens to appear elsewhere in a source
+        cited_full = set().union(*(full_dates(by_id[c]["text"]) for c in cited))
+        pub_years = {int(by_id[c]["date"][:4]) for c in cited if str(by_id[c].get("date", ""))[:4].isdigit()}
+        cited_md = set().union(*(all_dates[c] for c in cited))
+        for (mo, dy, yr) in full_dates(s.text):
+            if (mo, dy, yr) in cited_full:
+                continue
+            other_years = sorted({y for (m, d, y) in cited_full if (m, d) == (mo, dy)})
+            if other_years:
+                add(ref, s, "date_not_in_source", "error",
+                    f"Year {yr} is wrong: the cited source gives this date as {other_years}.")
+            elif pub_years and (mo, dy) in cited_md and yr not in pub_years:
+                add(ref, s, "date_not_in_source", "error",
+                    f"The source gives this date without a year and was published in {sorted(pub_years)}, not {yr}: likely a wrong year.")
+            elif pub_years and yr not in pub_years and (yr + 1) not in pub_years:
+                add(ref, s, "date_not_in_source", "error",
+                    f"Full date with year {yr} is not in the cited sources (published {sorted(pub_years)}): likely a wrong year.")
+
         if ref != "T":
             if not s.evidence.strip():
                 add(ref, s, "evidence_missing", "warning", "No evidence quote given.")
@@ -197,3 +249,33 @@ def deterministic_check(draft: BlogDraft, sources: list[dict]) -> list[Issue]:
                 elif best < 0.6:
                     add(ref, s, "evidence_not_in_source", "warning", f"Evidence quote only loosely matches the cited source (overlap {best:.0%}).")
     return issues
+
+
+def repair_citations(draft: BlogDraft, sources: list[dict]) -> list[str]:
+    """Code-only fix for wrong citations: if a number/date in a claim is missing from the cited sources but present in
+    another source, add that source's ID. Never removes citations, never changes text. Returns a log of changes."""
+    by_id = {s["id"]: s for s in sources}
+    nums = {sid: source_numbers(s["text"]) for sid, s in by_id.items()}
+    dates = {sid: source_month_days(s["text"]) for sid, s in by_id.items()}
+    changes = []
+    for ref, s in iter_sentences(draft):
+        if ref == "T" or s.kind != "claim" or not s.source_ids:
+            continue
+        cited = [c for c in s.source_ids if c in by_id]
+        if not cited:
+            continue
+        add: list[str] = []
+        for _, vals in claim_numbers(_DM_RE.sub(" ", _MD_RE.sub(" ", s.text))):
+            if any(_num_in(vals, nums[c]) for c in cited):
+                continue
+            add += [o for o in by_id if o not in cited and o not in add and _num_in(vals, nums[o])
+                    and cooccurs(s.text, by_id[o]["text"], vals=vals)][:1]
+        for md in month_days(s.text):
+            if any(md in dates[c] for c in cited):
+                continue
+            add += [o for o in by_id if o not in cited and o not in add and md in dates[o]
+                    and cooccurs(s.text, by_id[o]["text"], md=md)][:1]
+        if add:
+            s.source_ids = list(s.source_ids) + add
+            changes.append(f"[{ref}] +{add}")
+    return changes

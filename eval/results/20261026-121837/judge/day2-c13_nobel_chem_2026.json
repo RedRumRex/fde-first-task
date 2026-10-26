@@ -1,0 +1,89 @@
+{
+  "claims": [
+    {
+      "claim": "Henri Kagan and Kenso Soai won the 2026 Nobel Prize in Chemistry.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is directly supported by all three sources."
+    },
+    {
+      "claim": "The Royal Swedish Academy of Sciences announced the award for their discovery of non-linear effects and autocatalysis in asymmetric organic synthesis.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is directly supported by all three sources."
+    },
+    {
+      "claim": "The winners will share a prize of 12 million Swedish crowns, equivalent to approximately $1.2 million.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is directly supported by all three sources."
+    },
+    {
+      "claim": "Kagan and Soai's research focuses on non-linear effects and autocatalysis in asymmetric organic synthesis.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is directly supported by all three sources."
+    },
+    {
+      "claim": "Their discoveries help explain how nature favors one mirror-image form of a molecule, which is crucial in drug development.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 2."
+    },
+    {
+      "claim": "Kagan is often referred to as the 'father' of asymmetric catalysis, having developed pivotal methods in the 1980s.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 2."
+    },
+    {
+      "claim": "Soai's 1995 work, known as the Soai reaction, demonstrated a self-accelerating reaction that amplifies one molecular handedness.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 2."
+    },
+    {
+      "claim": "This year's chemistry prize follows the Nobel prizes for medicine and physics, awarded earlier in the week.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 3."
+    },
+    {
+      "claim": "The Nobel Prize in Chemistry has been awarded since 1901 and recognizes significant contributions to the field.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 3."
+    },
+    {
+      "claim": "The work of Kagan and Soai is foundational for understanding molecular behavior, especially in pharmaceuticals.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    },
+    {
+      "claim": "Their discoveries could lead to advancements in drug development, impacting how medications are synthesized and utilized.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    },
+    {
+      "claim": "The recognition of their contributions underscores the importance of asymmetric synthesis in modern chemistry.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    }
+  ],
+  "key_fact_contradictions": []
+}

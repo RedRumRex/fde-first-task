@@ -57,3 +57,45 @@ def test_off_by_one_year_is_caught(log):
     d.sections[0].sentences[0] = Sentence(text=s.text.replace("2025", "2024"), kind="claim", source_ids=s.source_ids, evidence=s.evidence)
     res = check_draft(log, d, SOURCES, use_llm=False)
     assert not res.passed and ("1.1", "number_not_in_source") in {(i.ref, i.type) for i in res.errors()}
+
+
+def test_wrong_year_that_appears_elsewhere_in_source_is_caught(log):
+    """Eval c05: 'On September 2, 2024, Judge Mehta ruled...' slipped through because '2024' appears in the source
+    in an unrelated sentence ('found in August 2024'). Sources were published in 2025."""
+    from news2blog.schemas import Sentence
+    srcs = [dict(s) for s in SOURCES]
+    srcs[0]["text"] += " In August 2024 a court found something unrelated."
+    d = BlogDraft(**CLEAN)
+    s = d.sections[0].sentences[0]
+    d.sections[0].sentences[0] = Sentence(text="On August 22, 2024, the US government said it will take a 10% stake in Intel.",
+                                          kind="claim", source_ids=["S1"], evidence=s.evidence)
+    res = check_draft(log, d, srcs, use_llm=False)
+    assert ("1.1", "date_not_in_source") in {(i.ref, i.type) for i in res.errors()}
+    ok = BlogDraft(**CLEAN)  # the correct "August 22, 2025" still passes
+    assert check_draft(log, ok, srcs, use_llm=False).passed
+
+
+def test_citation_repair_ignores_unrelated_mentions():
+    """The repair must not 'fix' a citation using a number that only appears in an unrelated sentence."""
+    from news2blog.schemas import Sentence
+    from news2blog.verify import repair_citations
+    srcs = [dict(s) for s in SOURCES]
+    srcs[2]["text"] += " Separately, a football club sold 77 tickets."
+    d = BlogDraft(**CLEAN)
+    d.sections[0].sentences[1] = Sentence(text="The government will receive 77 million Intel shares.", kind="claim",
+                                          source_ids=["S1"], evidence="the government will receive 433.3 million shares")
+    repair_citations(d, srcs)
+    assert d.sections[0].sentences[1].source_ids == ["S1"]
+
+
+def test_wrong_year_when_source_omits_the_year(log):
+    """The exact c05 shape: source says 'on Sept. 2' (no year), published 2025; post says 'September 2, 2024'."""
+    from news2blog.schemas import Sentence
+    srcs = [dict(s) for s in SOURCES]
+    srcs[0]["text"] += " The deal was signed on Sept. 2 after talks. In 2024 the firm reported losses."
+    d = BlogDraft(**CLEAN)
+    d.sections[0].sentences.append(Sentence(text="The deal was signed on September 2, 2024.", kind="claim",
+                                            source_ids=["S1"], evidence="The deal was signed on Sept. 2 after talks."))
+    assert ("1.4", "date_not_in_source") in {(i.ref, i.type) for i in check_draft(log, d, srcs, use_llm=False).errors()}
+    d.sections[0].sentences[-1].text = "The deal was signed on September 2, 2025."
+    assert check_draft(log, d, srcs, use_llm=False).passed

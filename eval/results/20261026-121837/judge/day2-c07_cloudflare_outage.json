@@ -1,0 +1,117 @@
+{
+  "claims": [
+    {
+      "claim": "On November 18, 2025, Cloudflare experienced a global outage that disrupted access to thousands of websites and services, including X.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by sources 1 and 3, which confirm the date and the impact on services including X."
+    },
+    {
+      "claim": "The incident began at 11:20 UTC and lasted several hours, resulting in HTTP 500-level errors across Cloudflare's network.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources 1 and 3 confirm the start time and the duration of the incident, as well as the HTTP 500-level errors."
+    },
+    {
+      "claim": "Cloudflare confirmed that a misconfigured internal feature file in its Bot Management system caused the outage.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources 1 and 3 confirm that the misconfigured feature file in the Bot Management system was the cause of the outage."
+    },
+    {
+      "claim": "This feature file exceeded a predefined size limit, crashing core proxy services responsible for routing traffic.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources 1 and 3 confirm that the feature file exceeded a size limit, causing crashes in core proxy services."
+    },
+    {
+      "claim": "The outage was triggered by a change in database permissions that led to duplicate data in the Bot Management system's feature file.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 confirms that a change in database permissions led to duplicate data in the feature file."
+    },
+    {
+      "claim": "As a result, the feature file's size ballooned from about 60 to nearly 200 machine learning features, exceeding memory limits.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources 1 and 3 confirm the increase in the number of features and the exceeding of memory limits."
+    },
+    {
+      "claim": "Cloudflare's core proxy system, named 'FL', began returning HTTP 5xx errors as it struggled to process the oversized file.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 confirms that the 'FL' proxy system returned HTTP 5xx errors due to the oversized file."
+    },
+    {
+      "claim": "By 13:05 UTC, Cloudflare implemented a temporary workaround to bypass the failing proxy for key services.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 confirms that a temporary workaround was implemented by 13:05 UTC."
+    },
+    {
+      "claim": "The outage affected various Cloudflare services, including its CAPTCHA alternative, Turnstile, and the Workers KV storage service.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 confirms that Turnstile and Workers KV were affected by the outage."
+    },
+    {
+      "claim": "Cloudflare labeled this incident as its most severe outage since 2019, acknowledging significant architectural shortcomings.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 confirms that Cloudflare labeled this as the most severe outage since 2019 and acknowledged architectural shortcomings."
+    },
+    {
+      "claim": "In response, Cloudflare is implementing measures to enhance internal configuration management and prevent future incidents.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 confirms that Cloudflare is implementing measures to enhance configuration management."
+    },
+    {
+      "claim": "The incident has sparked discussions about the fragility of centralized infrastructure and the reliance on major service providers.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 2 discusses the fragility of centralized infrastructure and reliance on major providers."
+    },
+    {
+      "claim": "For technical professionals, this incident underscores the importance of robust configuration management and testing protocols.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    },
+    {
+      "claim": "The outage illustrates how a single misconfiguration can lead to widespread disruptions in critical internet services.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    },
+    {
+      "claim": "Cloudflare's response will likely influence how other companies approach incident management and AI-driven systems in the future.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is a prediction and does not require a citation."
+    },
+    {
+      "claim": "Ultimately, this event highlights the need for greater redundancy and resilience in internet infrastructure.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    }
+  ],
+  "key_fact_contradictions": []
+}

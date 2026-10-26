@@ -1,0 +1,110 @@
+{
+  "claims": [
+    {
+      "claim": "On August 22, 2025, President Donald Trump announced that the U.S. government will acquire a 10% stake in Intel Corporation.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Both sources confirm the announcement by Trump regarding the U.S. government acquiring a 10% stake in Intel."
+    },
+    {
+      "claim": "The government will receive 433.3 million shares at a price of $20.47 per share, totaling $8.9 billion.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the details of the share acquisition, including the number of shares, price per share, and total investment amount."
+    },
+    {
+      "claim": "This investment is part of the CHIPS Act financing Intel received last year to boost U.S. semiconductor manufacturing.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm that the investment is related to the CHIPS Act financing aimed at boosting U.S. semiconductor manufacturing."
+    },
+    {
+      "claim": "Trump emphasized that the deal was a win for both the U.S. and Intel, highlighting the importance of American-made technology.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 2 confirms Trump's statement about the deal being beneficial for both the U.S. and Intel, and the emphasis on American-made technology."
+    },
+    {
+      "claim": "The U.S. government's stake does not include a seat on Intel's board, indicating a passive investment approach.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm that the U.S. government's stake does not include a board seat, indicating a passive investment."
+    },
+    {
+      "claim": "The agreement includes a warrant allowing the government to purchase an additional 5% of Intel shares within five years.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 confirms the existence of a warrant allowing the government to purchase an additional 5% of Intel shares within five years."
+    },
+    {
+      "claim": "Trump's administration aims to strengthen U.S. leadership in semiconductor manufacturing amid increasing global competition.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 2 supports the interpretation that the administration aims to strengthen U.S. leadership in semiconductor manufacturing."
+    },
+    {
+      "claim": "The deal reflects a broader strategy to enhance domestic chip production, which has national security implications.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 2 supports the interpretation that the deal is part of a strategy to enhance domestic chip production with national security implications."
+    },
+    {
+      "claim": "Intel's stock rose 7% following the announcement, reflecting positive market sentiment about the deal.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 2 confirms that Intel's stock rose 7% following the announcement."
+    },
+    {
+      "claim": "The investment is seen as a strategic move to stabilize Intel, which has faced significant challenges in recent years.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 2 supports the interpretation that the investment is a strategic move to stabilize Intel."
+    },
+    {
+      "claim": "Trump's administration has indicated it may pursue similar investments in other technology firms in critical sectors.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 2 confirms that the administration may pursue similar investments in other technology firms."
+    },
+    {
+      "claim": "This investment represents a significant shift in U.S. government involvement in the tech sector, particularly in semiconductors.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "The statement is an interpretation and does not have a citation to support it."
+    },
+    {
+      "claim": "For builders and tech professionals, the implications of increased government stakes in private companies could reshape industry dynamics.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "The statement is an interpretation and does not have a citation to support it."
+    },
+    {
+      "claim": "The ongoing focus on domestic chip production underscores the strategic importance of technology in national security and economic policy.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "The statement is an interpretation and does not have a citation to support it."
+    },
+    {
+      "claim": "As the semiconductor industry evolves, the effectiveness of such government interventions will be closely watched.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "The statement is an interpretation and does not have a citation to support it."
+    }
+  ],
+  "key_fact_contradictions": []
+}

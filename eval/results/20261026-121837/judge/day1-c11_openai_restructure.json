@@ -1,0 +1,89 @@
+{
+  "claims": [
+    {
+      "claim": "On October 28, 2025, OpenAI announced its restructuring into a public-benefit corporation, OpenAI Group PBC, with a valuation of $500 billion.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 1, which states that OpenAI restructured into a public-benefit corporation with a valuation of $500 billion."
+    },
+    {
+      "claim": "Microsoft now holds a 27% stake in the new entity, valued at approximately $135 billion.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 1 and Source 2, which both confirm that Microsoft holds a 27% stake in OpenAI Group PBC, valued at approximately $135 billion."
+    },
+    {
+      "claim": "This restructuring removes previous constraints on OpenAI's ability to raise capital, which had been in place since a 2019 agreement with Microsoft.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 1 and Source 3, which mention that the restructuring removes constraints on raising capital that were in place since the 2019 agreement with Microsoft."
+    },
+    {
+      "claim": "OpenAI's nonprofit arm, now called the OpenAI Foundation, holds a 26% stake in the for-profit entity, with 47% owned by employees and investors.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 2, which states that the OpenAI Foundation holds a 26% stake, and 47% is held by employees and investors."
+    },
+    {
+      "claim": "Microsoft's investment in OpenAI has now generated a return of nearly 10 times its initial investment of $13.8 billion.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 1, which mentions that Microsoft's investment has generated a return of nearly 10 times its initial investment of $13.8 billion."
+    },
+    {
+      "claim": "Shares of Microsoft rose 2.5% following the announcement, pushing its market value above $4 trillion.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 1, which states that Microsoft's shares rose 2.5%, sending its market value above $4 trillion."
+    },
+    {
+      "claim": "CEO Sam Altman indicated that an initial public offering (IPO) is likely as OpenAI seeks to finance ambitious technology plans.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 3, which mentions that Sam Altman indicated an IPO is likely to finance ambitious technology plans."
+    },
+    {
+      "claim": "The new structure allows OpenAI to pursue collaborations and develop products with third parties, expanding its operational scope.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 2 and Source 3, which mention that the new structure allows OpenAI to pursue collaborations and develop products with third parties."
+    },
+    {
+      "claim": "Microsoft will no longer have the right of first refusal for providing computing services to OpenAI, although it retains significant IP rights until 2032.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by Source 2 and Source 3, which confirm that Microsoft no longer has the right of first refusal but retains significant IP rights until 2032."
+    },
+    {
+      "claim": "This restructuring marks a significant shift in the relationship between OpenAI and Microsoft, potentially enhancing OpenAI's ability to innovate and attract investment.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation of the restructuring's impact and does not require a citation."
+    },
+    {
+      "claim": "For builders and investors, the implications of OpenAI's transition to a public-benefit corporation could reshape the AI landscape and funding opportunities.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation of the potential implications of OpenAI's transition and does not require a citation."
+    },
+    {
+      "claim": "The ongoing scrutiny regarding transparency and safety oversight will remain crucial as OpenAI navigates its new operational framework.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation regarding the importance of scrutiny and does not require a citation."
+    }
+  ],
+  "key_fact_contradictions": []
+}

@@ -1,0 +1,68 @@
+{
+  "claims": [
+    {
+      "claim": "John Clarke, Michel Devoret, and John Martinis have been awarded the 2025 Nobel Prize for Physics.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Both sources confirm that Clarke, Devoret, and Martinis won the 2025 Nobel Prize for Physics."
+    },
+    {
+      "claim": "The announcement was made by the Royal Swedish Academy of Sciences on October 7, 2025.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Both sources confirm the announcement date and the awarding body."
+    },
+    {
+      "claim": "The trio received the award for their groundbreaking experiments in quantum physics.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the award was for their experiments in quantum physics."
+    },
+    {
+      "claim": "Their research focuses on macroscopic quantum mechanical tunnelling and energy quantisation.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the focus on macroscopic quantum mechanical tunnelling and energy quantisation."
+    },
+    {
+      "claim": "This work is foundational for the development of next-generation quantum technologies, including quantum computers.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources discuss the significance of their work for quantum technologies."
+    },
+    {
+      "claim": "John Clarke was born in 1942 in Cambridge, UK, and is a professor at UC Berkeley.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm Clarke's birth year, place, and position at UC Berkeley."
+    },
+    {
+      "claim": "The recognition of Clarke, Devoret, and Martinis highlights the importance of quantum mechanics in modern technology.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require citation."
+    },
+    {
+      "claim": "Their work not only advances theoretical physics but also paves the way for practical applications in quantum computing and other technologies.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require citation."
+    },
+    {
+      "claim": "As quantum technologies evolve, understanding these principles will be crucial for future innovations.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require citation."
+    }
+  ],
+  "key_fact_contradictions": []
+}

@@ -1,0 +1,103 @@
+{
+  "claims": [
+    {
+      "claim": "On June 25, 2025, the Axiom 4 spaceflight lifted off from Florida, carrying Indian Air Force pilot Shubhanshu Shukla.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the launch date and location, as well as Shukla's participation."
+    },
+    {
+      "claim": "Shukla became the second Indian citizen to go to space, following Rakesh Sharma in 1984.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm Shukla is the second Indian in space after Rakesh Sharma."
+    },
+    {
+      "claim": "The mission is operated by Axiom Space and involves a collaboration with NASA and the European Space Agency.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the collaboration between Axiom Space, NASA, and ESA."
+    },
+    {
+      "claim": "Shukla will spend 18 days aboard the International Space Station (ISS), according to the mission's conclusion report.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 3 confirms the 18-day duration of the mission."
+    },
+    {
+      "claim": "Shukla's journey is significant as it represents India's renewed commitment to human spaceflight after 41 years.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources mention the 41-year gap since Rakesh Sharma's flight, supporting the interpretation of renewed commitment."
+    },
+    {
+      "claim": "He will be the first Indian to live and work on the ISS, contributing to international scientific research.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm Shukla is the first Indian to live and work on the ISS."
+    },
+    {
+      "claim": "The mission includes a diverse crew from multiple countries, enhancing international cooperation in space exploration.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources list the international crew, supporting the interpretation of enhanced cooperation."
+    },
+    {
+      "claim": "During his time on the ISS, Shukla will conduct several scientific experiments, including studies on muscle regeneration and crop viability.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the experiments on muscle regeneration and crop viability."
+    },
+    {
+      "claim": "Seven of the experiments are developed by Indian research institutions, showcasing India's growing capabilities in space science.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 3 confirms the involvement of Indian research institutions in seven experiments."
+    },
+    {
+      "claim": "The mission aims to enhance understanding of human spaceflight and microgravity science, which is crucial for future missions.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources discuss the scientific goals, supporting the interpretation of their importance."
+    },
+    {
+      "claim": "Shukla's mission is a pivotal step for India's space program, signaling a new era of human space exploration.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "supported",
+      "reason": "The sources support the interpretation of the mission's significance for India's space program."
+    },
+    {
+      "claim": "For builders and technical professionals, this mission illustrates the importance of international collaboration in advancing space technology.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "supported",
+      "reason": "The sources support the interpretation of the mission's role in international collaboration."
+    },
+    {
+      "claim": "The successful execution of Axiom 4 could inspire future generations of scientists and engineers in India.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "supported",
+      "reason": "The sources support the interpretation of the mission's potential inspirational impact."
+    },
+    {
+      "claim": "As India prepares for its own Gaganyaan mission, experiences gained from Axiom 4 will be invaluable.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "supported",
+      "reason": "The sources support the interpretation of the mission's value for future Indian space missions."
+    }
+  ],
+  "key_fact_contradictions": []
+}

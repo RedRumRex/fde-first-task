@@ -26,7 +26,9 @@ def test_eval_scoring_and_demo_fill(world, tmp_path, monkeypatch):
     assert "old" not in txt and "| Cases passed | 1/1 | 2/2 |" in txt and txt.endswith("outro\n")
 
 
-def test_withheld_post_is_not_a_pass(world, tmp_path):
+def test_withheld_post_is_not_a_pass(world, tmp_path, monkeypatch):
+    from news2blog import graph
+    monkeypatch.setattr(graph, "MAX_SALVAGE", 0)
     world([bad_draft()], stubborn=True)
     (tmp_path / "judge").mkdir()
     rec = run_eval.run_case({"id": "c01", "url": SOURCES[0]["url"], "key_facts": []}, "day2", tmp_path)

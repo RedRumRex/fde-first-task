@@ -28,7 +28,7 @@ def _attempts_table(history: list[dict]) -> str:
     rows = ["| Draft | Verdict | Claims verified | Errors | Warnings | Error types |", "|---|---|---:|---:|---:|---|"]
     for h in history:
         types = ", ".join(sorted({e["type"] for e in h["errors"]})) or "-"
-        tag = " (planted error)" if h.get("planted") else ""
+        tag = " (planted error)" if h.get("planted") else (" (salvage: failing sentences cut)" if h["attempt"] > 1 + config.MAX_RETRIES else "")
         rows.append(f"| v{h['attempt']}{tag} | {'PASS' if h['passed'] else 'REJECT'} | {h['n_supported']}/{h['n_claims']} | "
                     f"{len(h['errors'])} | {len(h['warnings'])} | {types} |")
     return "\n".join(rows)
@@ -136,7 +136,16 @@ def report(log: RunLogger, state: dict, use_llm: bool = True) -> dict:
         md += ["## Checker verdicts per draft", "", _attempts_table(history), "",
                "## What was rejected and why", ""] + ([f"- {x}" for x in narrative.rejections] or ["_No rejections._"]) + ["",
                "<details><summary>Every flagged claim (raw)</summary>", "", _issue_list(history), "</details>", ""]
-    md += ["## Cost", "", _cost_table(cost), "", "## Open doubts for the editor", ""] + [f"- {x}" for x in narrative.open_doubts] + [""]
+    conflicts = [w for w in (history[-1]["warnings"] if history else []) if w["type"] == "sources_disagree"]
+    if state.get("salvaged"):
+        md += ["## Sentences cut by the salvage step", "",
+               f"After {1 + config.MAX_RETRIES} drafts these sentences still could not be verified, so they were removed and the "
+               "shortened post was re-checked in full:", ""] + [f"- ~~{s}~~" for s in state["salvaged"]] + [""]
+    md += ["## Cost", "", _cost_table(cost), "", "## Open doubts for the editor", ""] + [f"- {x}" for x in narrative.open_doubts]
+    if conflicts:
+        md += ["", "**Sources disagree (the post follows its cited source; the editor should pick):**", ""] + \
+              [f"- `[{w['ref']}]` {w['detail']}  \n  > {w['sentence']}" for w in conflicts]
+    md += [""]
     md += ["## Files", "", "- `log.jsonl`: every agent action, in order", "- `sources.json`: fetched source text",
            "- `draft_vN.md/json`, `check_vN.json`: each draft and its checker verdict",
            f"- `{final_name or '(no post)'}`: the output", "- `cost.json`: token and cost breakdown", ""]

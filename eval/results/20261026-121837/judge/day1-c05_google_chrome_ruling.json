@@ -1,0 +1,89 @@
+{
+  "claims": [
+    {
+      "claim": "On September 2, 2025, U.S. District Judge Amit Mehta ruled that Google will not be required to divest its Chrome browser or Android operating system in a significant antitrust case.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that Judge Mehta ruled Google will not have to sell Chrome or Android."
+    },
+    {
+      "claim": "The ruling followed a lengthy legal battle that began in 2020, where Google was found to have maintained monopolies in online search and advertising.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the legal battle began in 2020 and Google was found to have maintained monopolies."
+    },
+    {
+      "claim": "Judge Mehta's decision represents a notable victory for Google amidst growing scrutiny of Big Tech's market dominance.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources describe the ruling as a win for Google, amidst scrutiny of Big Tech."
+    },
+    {
+      "claim": "While Google will retain ownership of Chrome and Android, the judge imposed requirements for the company to share certain data with competitors to enhance market competition.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that Google must share data with competitors."
+    },
+    {
+      "claim": "The ruling allows Google to continue its lucrative payments to Apple and other manufacturers for default search engine agreements, which have been a point of contention in the case.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm Google can continue payments to Apple and others for default search agreements."
+    },
+    {
+      "claim": "Mehta noted that divesting Chrome would be \"incredibly messy and highly risky,\" indicating a preference for less drastic measures.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm Mehta's statement about divesting Chrome being messy and risky."
+    },
+    {
+      "claim": "Investors reacted positively to the ruling, with Alphabet's stock rising 7.5% in after-hours trading, reflecting relief over the lack of severe penalties.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm Alphabet's stock rose 7.5% after the ruling."
+    },
+    {
+      "claim": "Despite the ruling, concerns remain about how the mandated data sharing will affect user privacy and Google's competitive edge.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources mention concerns about data sharing affecting privacy and competition."
+    },
+    {
+      "claim": "The ruling is part of a broader trend of increasing scrutiny and legal challenges against major tech companies, including ongoing cases against Google and others.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm ongoing legal challenges against major tech companies, including Google."
+    },
+    {
+      "claim": "This ruling marks a significant moment in U.S. antitrust enforcement, as it balances the need for competition with the realities of a rapidly evolving tech landscape.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation without a specific citation needed."
+    },
+    {
+      "claim": "For tech companies, the decision underscores the importance of navigating regulatory challenges while maintaining competitive business practices.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation without a specific citation needed."
+    },
+    {
+      "claim": "The outcome may influence future antitrust cases, particularly as AI technologies continue to reshape the competitive landscape.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation without a specific citation needed."
+    }
+  ],
+  "key_fact_contradictions": []
+}

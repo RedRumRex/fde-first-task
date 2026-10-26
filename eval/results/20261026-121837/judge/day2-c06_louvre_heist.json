@@ -1,0 +1,54 @@
+{
+  "claims": [
+    {
+      "claim": "The robbery lasted less than eight minutes, with the thieves inside the museum for about four minutes.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the heist lasted less than eight minutes, with less than four minutes inside the museum."
+    },
+    {
+      "claim": "Thieves accessed the second-floor Galerie d’Apollon, where they smashed display cases to steal jewels using a cherry picker and grinders.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the thieves used a cherry picker and grinders to access the Galerie d’Apollon and smash display cases."
+    },
+    {
+      "claim": "The stolen items include eight pieces of jewelry linked to French emperors, valued at an estimated 88 million euros ($102 million).",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm eight pieces of jewelry were stolen, valued at 88 million euros ($102 million)."
+    },
+    {
+      "claim": "French authorities have launched a manhunt for the thieves, believed to be a crew of three or four individuals.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm a manhunt is underway for a crew of three or four individuals."
+    },
+    {
+      "claim": "Interior Minister Laurent Nunez stated that the thieves acted with precision and speed, indicating a highly professional operation.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm Nunez described the operation as precise and professional."
+    },
+    {
+      "claim": "Security measures at the Louvre are under scrutiny, with questions about the effectiveness of surveillance systems during the heist.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm scrutiny over security measures and questions about surveillance effectiveness."
+    },
+    {
+      "claim": "Culture Minister Rachida Dati emphasized that the security apparatus did not fail, despite the successful theft.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm Dati stated the security apparatus did not fail."
+    }
+  ],
+  "key_fact_contradictions": []
+}

@@ -1,0 +1,89 @@
+{
+  "claims": [
+    {
+      "claim": "John Clarke, Michel Devoret, and John Martinis have been awarded the 2025 Nobel Prize in Physics for their groundbreaking work in quantum mechanics.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that Clarke, Devoret, and Martinis won the 2025 Nobel Prize in Physics for their work in quantum mechanics."
+    },
+    {
+      "claim": "The Nobel Prize committee announced the award on October 7, 2025, highlighting the trio's significant contributions to the field.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the announcement date and the recognition of their contributions."
+    },
+    {
+      "claim": "The award includes a prize of SEK 11 million ($1.2 million), which will be shared equally among the laureates.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the prize amount and that it is shared equally among the winners."
+    },
+    {
+      "claim": "Their research demonstrated macroscopic quantum tunneling, a phenomenon previously observed only at microscopic scales, using superconducting circuits.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that their research demonstrated macroscopic quantum tunneling using superconducting circuits."
+    },
+    {
+      "claim": "This work has laid the foundation for the development of quantum computers, which could revolutionize various fields including drug discovery and cybersecurity.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources support the claim that their work laid the foundation for quantum computers, which have potential applications in various fields."
+    },
+    {
+      "claim": "Clarke noted that the significance of their research lies in its potential to advance technology reliant on quantum mechanics.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm Clarke's statement about the significance of their research in advancing technology reliant on quantum mechanics."
+    },
+    {
+      "claim": "John Clarke is an emeritus professor at UC Berkeley, while Michel Devoret and John Martinis are faculty at UC Santa Barbara and Yale.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the current positions of Clarke, Devoret, and Martinis."
+    },
+    {
+      "claim": "Their collaborative work began in the mid-1980s at UC Berkeley, where they explored quantum mechanics through innovative experiments.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that their collaborative work began in the mid-1980s at UC Berkeley."
+    },
+    {
+      "claim": "Clarke, Devoret, and Martinis have significantly influenced the field of quantum mechanics, paving the way for modern quantum technologies.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources support the claim that their work has significantly influenced quantum mechanics and modern quantum technologies."
+    },
+    {
+      "claim": "The recognition of Clarke, Devoret, and Martinis underscores the importance of quantum mechanics in contemporary technology.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "supported",
+      "reason": "The sources support the interpretation that their recognition underscores the importance of quantum mechanics."
+    },
+    {
+      "claim": "Their work exemplifies how fundamental research can lead to practical applications, such as quantum computing, which promises to solve complex problems.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "supported",
+      "reason": "The sources support the interpretation that their work exemplifies the transition from fundamental research to practical applications."
+    },
+    {
+      "claim": "As quantum technology continues to evolve, the contributions of these laureates will likely play a crucial role in shaping future innovations.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "supported",
+      "reason": "The sources support the interpretation that their contributions will play a crucial role in future innovations."
+    }
+  ],
+  "key_fact_contradictions": []
+}
