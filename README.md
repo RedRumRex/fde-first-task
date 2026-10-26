@@ -250,7 +250,7 @@ fde-first/
 ├── README.md                  ← you are here
 ├── discovery_brief.md         ← deliverable 1: user, metric, risks, scope
 ├── demo.md                    ← deliverable 6: 2-minute speech + 5-minute run-of-show
-├── tone_guide.md              ← house style the drafter follows (placeholder)
+├── tone_guide.md              ← house style, derived from the customer's own blog
 ├── run.py                     ← CLI: run one URL (Day 2, Day 1, or with a planted error)
 ├── run_all.sh                 ← all deliverables in one go
 ├── requirements.txt · .env.example · .gitignore · graph.mmd
@@ -331,7 +331,8 @@ Everything is set in `.env` (see [`.env.example`](.env.example)):
 - **Units and qualifiers** (for example "(UTC)") aren't yet checked by code, and c08 dropped one.
 - **Syndicated copies** of one wire story can look like independent corroboration. **Next:** near-duplicate text detection.
 - **Salvage shortens posts.** It only cuts sentences that fail, but a heavily salvaged post can get thin, though never below 4 cited facts.
-- **The tone guide is a placeholder** until the customer shares theirs.
+- **Length is now enforced in code.** The eval drafts ran 144–331 words against a 350–500 target, because the model ignores word counts. The prompt now asks for sentence counts, and the checker rejects posts under 300 words (`MIN_WORDS`). The eval scores above were measured before this change.
+- **The tone guide is our reading of the customer's blog** (four recent posts). Their editors should review it; the eval scores above were measured with the earlier placeholder guide.
 - **The judge is an LLM too.** We review every failure by hand: 2 of the 5 judge flags in the final eval were wrong or debatable.
 
 ---

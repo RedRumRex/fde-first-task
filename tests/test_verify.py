@@ -25,3 +25,12 @@ def test_evidence_overlap():
     src = "The government will receive 433.3 million shares of common stock for $20.47 apiece, the company said."
     assert evidence_overlap("will receive 433.3 million shares of common stock", src) == 1.0
     assert evidence_overlap("the company will triple its revenue by next year according to analysts", src) < 0.3
+
+
+def test_missing_kind_is_inferred_not_a_crash():
+    """Live run crashed after 3 attempts because the model left out `kind` on one sentence."""
+    from news2blog.schemas import BlogDraft
+    d = BlogDraft(title="t", sections=[{"heading": "h", "sentences": [
+        {"text": "Meta invested $14.3 billion.", "source_ids": ["S1"], "evidence": "x"},
+        {"text": "Bottom line: watch this space."}]}])
+    assert [s.kind for s in d.sections[0].sentences] == ["claim", "opinion"]

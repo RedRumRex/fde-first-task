@@ -99,3 +99,13 @@ def test_wrong_year_when_source_omits_the_year(log):
     assert ("1.4", "date_not_in_source") in {(i.ref, i.type) for i in check_draft(log, d, srcs, use_llm=False).errors()}
     d.sections[0].sentences[-1].text = "The deal was signed on September 2, 2025."
     assert check_draft(log, d, srcs, use_llm=False).passed
+
+
+def test_short_post_is_rejected(log, monkeypatch):
+    """Eval drafts ran 144-331 words against a 350-500 target, so length is enforced in code, not left to the prompt."""
+    from news2blog import config
+    monkeypatch.setattr(config, "MIN_WORDS", 1000)
+    res = check_draft(log, BlogDraft(**CLEAN), SOURCES, use_llm=False)
+    assert not res.passed and ("post", "post_too_short") in {(i.ref, i.type) for i in res.errors()}
+    monkeypatch.setattr(config, "MIN_WORDS", 0)
+    assert check_draft(log, BlogDraft(**CLEAN), SOURCES, use_llm=False).passed

@@ -41,7 +41,7 @@ DRAFTER_SYSTEM = """You are a blog writer who turns a news story into a short, t
 
 Every sentence you write is one of two kinds:
 - "claim": states a fact (a number, date, name, event, who did what, a quote). It MUST list in `source_ids` at least one
-  source that states it, and `evidence` MUST be a verbatim quote (max ~40 words) copied character-for-character from the first cited source.
+  source that states it, and `evidence` MUST be a verbatim quote (max ~25 words) copied character-for-character from the first cited source.
 - "opinion": the blog's own analysis or framing ("For builders, the bigger question is..."). It must contain NO new facts:
   no digits, no dates, no quotes, no claims about what someone did or said.
 
@@ -52,8 +52,10 @@ Hard rules:
 4. The headline must be supported by the sources; list its sources in `title_source_ids`.
 5. Never put citation markers like [1] or (S1) in the text; citations go in `source_ids` only.
 6. One fact-bearing idea per sentence makes checking easier. Prefer citing two sources when both state the fact.
-7. Length: 350-500 words, 3-4 sections, at least 8 claim sentences. Use facts from ALL the sources, not just S1.
-   The final section is headed "Why it matters".
+7. Length: count SENTENCES, not words. Write 4 sections: an opening section of 4 sentences, two middle sections of
+   7 to 9 sentences each, and a closing section of 3 sentences. That is at least 20 sentences, at least 12 of them claims
+   (about 350-500 words). Posts under 300 words are rejected. Use facts from ALL the sources, not just S1.
+   Section headings and the opening and closing sections follow the TONE GUIDE.
 
 TONE GUIDE (follow it):
 {tone_guide}
@@ -92,6 +94,23 @@ Rules for this revision:
 - For each flagged sentence follow its "FIX" instruction. When in doubt, DELETE the sentence: a shorter true post beats a longer wrong one.
 - Do NOT add any new sentence that states a fact. A rewrite that introduces a new unsupported fact will be rejected again.
 Return the complete revised BlogDraft."""
+
+DRAFTER_EXPAND = """The independent fact-checker REJECTED your previous draft (attempt {attempt}) because it is too short or has too few facts.
+
+Your previous draft, with sentence refs:
+{numbered}
+
+Problems found:
+{issues}
+
+The post has {words} words and needs at least {min_words}. Return ONLY what changes; code adds it to the post:
+- `new_sentences`: at least {n_new} NEW sentences (about {need} more words). Each must add a fact or point the post does
+  not already make: never restate a fact that is already there in other words.
+  Each says which existing section it belongs to (1 to {n_sections}); put most of them in the middle sections.
+  New claims must state facts found in the SOURCES that the post does not use yet (numbers, dates, names, quotes,
+  context), with source_ids and a verbatim evidence quote copied from the first cited source.
+- `fixes`: one fix per flagged sentence ref listed above (not for [post]), as replace or delete.
+Never add a fact that is not in the SOURCES. Every sentence already in the post stays exactly as it is."""
 
 EVENT_SYSTEM = """You read a news article and describe the event it reports, so that a researcher can find other outlets covering
 the same event. Be neutral and precise. Use only what the article says."""

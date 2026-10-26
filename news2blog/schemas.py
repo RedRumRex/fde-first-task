@@ -1,7 +1,7 @@
 """Structured outputs exchanged between agents."""
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 
 # ---------- Researcher ----------
@@ -29,8 +29,18 @@ class Sentence(BaseModel):
     source_ids: list[str] = Field(default_factory=list, description="IDs like S1, S2 that support this claim. Required for claims.")
     evidence: str = Field(
         default="",
-        description="For claims: a short VERBATIM quote (max ~40 words) copied from the first cited source that supports the claim.",
+        description="For claims: a short VERBATIM quote (max ~25 words) copied from the first cited source that supports the claim.",
     )
+
+
+    @model_validator(mode="before")
+    @classmethod
+    def _infer_kind(cls, data):
+        """gpt-4o-mini sometimes drops `kind` (live runs: a 'Bottom line:' sentence, 3 attempts in a row). A sentence with
+        sources is a claim, one without is an opinion; the checker verifies either way, so nothing passes unchecked."""
+        if isinstance(data, dict) and not data.get("kind"):
+            data = {**data, "kind": "claim" if data.get("source_ids") else "opinion"}
+        return data
 
 
 class Section(BaseModel):
@@ -56,6 +66,20 @@ class SentenceFix(BaseModel):
 
 class Revision(BaseModel):
     fixes: list[SentenceFix] = Field(description="Exactly one fix per flagged ref")
+
+
+class NewSentence(BaseModel):
+    section: int = Field(description="Number of the EXISTING section to add this sentence to (1 = first section)")
+    text: str = Field(description="One new sentence, not already in the post")
+    kind: Literal["claim", "opinion"] = "claim"
+    source_ids: list[str] = Field(default_factory=list, description="Required for claims")
+    evidence: str = Field(default="", description="For claims: verbatim quote copied from the first cited source")
+
+
+class Expansion(BaseModel):
+    """Lengthen a post without touching the sentences that already passed: code appends these."""
+    fixes: list[SentenceFix] = Field(default_factory=list, description="One fix per flagged sentence ref, if any")
+    new_sentences: list[NewSentence] = Field(description="The NEW sentences to add")
 
 
 # ---------- Checker ----------

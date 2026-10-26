@@ -64,7 +64,7 @@ The judge is a different prompt and a different model from the checker, so the c
 
 **Constraint:** cost. The final eval ran on OpenAI with a small budget, so every run had to stay under $0.05 and the full 28-run eval under about $1. We started on Groq's free tier (about 8K tokens/minute per model, sources cut to 3,000 characters); on OpenAI, sources get up to 12,000 characters each.
 
-**Out:** images, SEO, publishing to a CMS, languages other than English, paywalled sources, a UI, and the real tone guide (we're using a placeholder until the customer shares theirs).
+**Out:** images, SEO, publishing to a CMS, languages other than English, paywalled sources, and a UI. The customer asked us to work out the tone from their existing blog, so `tone_guide.md` is derived from four of their recent posts; the FAQ, ratings and calls to action those posts carry are left for the editor.
 
 ## Questions for the customer
 

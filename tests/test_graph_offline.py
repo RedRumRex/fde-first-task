@@ -216,3 +216,40 @@ def test_wrong_citation_is_repaired_by_code():
     changes = repair_citations(d, SOURCES)
     assert changes and d.sections[1].sentences[1].source_ids[0] == "S1" and len(d.sections[1].sentences[1].source_ids) == 2
     assert not any(i.type == "wrong_citation" and i.ref == "2.2" for i in deterministic_check(d, SOURCES))
+
+
+def test_short_post_is_expanded_not_rewritten(world, monkeypatch):
+    """Live run: asked to return a longer full post, the model copied the 277-word post back 3 times.
+    Now it returns only new sentences and code appends them, so a short draft actually grows and nothing that passed changes."""
+    from news2blog import config
+    from news2blog.render import word_count
+    from news2blog.schemas import BlogDraft
+    short = word_count(BlogDraft(**CLEAN))
+    monkeypatch.setattr(config, "MIN_WORDS", short + 10)
+    world([CLEAN])
+    out = run_pipeline(SOURCES[0]["url"], quiet=True, base=world.tmp)
+    assert out["status"].startswith("PASSED"), out["status"]
+    assert out["attempt"] == 2 and word_count(BlogDraft(**out["draft"])) >= short + 10
+    first = [s["text"] for sec in CLEAN["sections"] for s in sec["sentences"]]
+    final = [s["text"] for sec in out["draft"]["sections"] for s in sec["sentences"]]
+    assert all(t in final for t in first)
+
+
+def test_expansion_never_lands_after_the_bottom_line(tmp_path):
+    """Live run: added sentences were appended after 'Bottom line: ...', so the post no longer ended on it."""
+    from news2blog.agents.drafter import expand
+    from news2blog.runlog import RunLogger
+    from news2blog.schemas import BlogDraft, Expansion, NewSentence
+    d = BlogDraft(title="t", sections=[
+        {"heading": "Quick Answer", "sentences": [{"text": "A.", "kind": "opinion"}]},
+        {"heading": "1. Body", "sentences": [{"text": "B.", "kind": "opinion"}]},
+        {"heading": "Bottom Line", "sentences": [{"text": "C.", "kind": "opinion"}, {"text": "Bottom line: watch this.", "kind": "opinion"}]}])
+    out = expand(d, Expansion(new_sentences=[NewSentence(section=3, text="New fact.", kind="opinion"),
+                                             NewSentence(section=2, text="More.", kind="opinion")]),
+                 set(), RunLogger(base=tmp_path, quiet=True), "drafter")
+    assert [s.text for s in out.sections[-1].sentences] == ["C.", "Bottom line: watch this."]
+    assert [s.text for s in out.sections[1].sentences] == ["B.", "New fact.", "More."]
+    two = BlogDraft(title="t", sections=[d.sections[0], d.sections[2]])
+    out2 = expand(two, Expansion(new_sentences=[NewSentence(section=2, text="X.", kind="opinion")]), set(),
+                  RunLogger(base=tmp_path, quiet=True), "drafter")
+    assert out2.sections[-1].sentences[-1].text.startswith("Bottom line")

@@ -14,7 +14,7 @@ Our customer is a content team that has to turn breaking news into a blog post q
 
 So our metric isn't "it reads well." It's this: **every claim has a source URL, and an independent judge finds no unsupported claims.**
 
-*[Show the graph in the README.]* It's a LangGraph with four roles. The **researcher** reads the article, then searches and fetches two more outlets. The **drafter** writes in our tone guide, and tags every sentence as a claim, with its source and a word-for-word quote, or as opinion. The **checker** is a different model with its own prompt, and it has two layers. Plain code checks every number, date and quote against the source, and an LLM judges each claim. If a draft is rejected, the drafter may only fix the flagged sentences, up to three drafts. The **reporter** writes the summary with the exact cost.
+*[Show the graph in the README.]* It's a LangGraph with four roles. The **researcher** reads the article, then searches and fetches two more outlets. The **drafter** writes in the customer's house style, which we worked out from four of their own blog posts, and tags every sentence as a claim, with its source and a word-for-word quote, or as opinion. The **checker** is a different model with its own prompt, and it has two layers. Plain code checks every number, date and quote against the source, and an LLM judges each claim. If a draft is rejected, the drafter may only fix the flagged sentences, up to three drafts. The **reporter** writes the summary with the exact cost.
 
 *[Start the live run.]* I'm planting a wrong date. The checker rejects it and points to the sentence, and draft two passes.
 
@@ -151,7 +151,7 @@ _Final eval: `eval/results/20261026-121837` (2026-10-26 12:18). Full table: `eva
 - **"What stops an infinite loop?"** A hard cap of 3 drafts, plus one salvage pass, after which the run fails with every claim that didn't hold up.
 - **"How do you know the judge is right?"** We don't fully trust it: every judge failure was checked by hand, and 2 of 5 were wrong or debatable.
 - **"Why not re-run the eval after the last fix?"** API budget. We proved the fix by replaying it on the saved drafts, which is free and covers the exact post that failed.
-- **"What would you build next?"** Detect syndicated copies of the same wire story, keep units like "(UTC)" in the code check, and use the customer's real tone guide.
+- **"What would you build next?"** Detect syndicated copies of the same wire story, keep units like "(UTC)" in the code check, and have the customer's editors review the tone guide we derived from their blog.
 
 ---
 

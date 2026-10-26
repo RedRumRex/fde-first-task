@@ -100,6 +100,7 @@ MAX_RETRIES = int(os.getenv("MAX_RETRIES", "2"))
 
 # Research limits. Sized so the biggest prompt (drafter revision / checker) stays under Groq's ~8K tokens/minute.
 NUM_EXTRA_SOURCES = 2
+MIN_WORDS = int(os.getenv("MIN_WORDS", "300"))  # a checker-approved post needs at least this many words
 MIN_CLAIMS = int(os.getenv("MIN_CLAIMS", "4"))  # a checker-approved post needs at least this many cited facts
 MAX_SOURCE_CHARS = int(os.getenv("MAX_SOURCE_CHARS", "3000" if PROVIDER == "groq" else "12000"))
 # Client-side pacing: tokens per minute allowed per model (0 = off). Groq free tier is about 8K on gpt-oss.

@@ -9,7 +9,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 
 from .. import config, llm
 from ..prompts import CHECKER_SYSTEM
-from ..render import numbered_view
+from ..render import numbered_view, word_count
 from ..runlog import RunLogger
 from ..schemas import BlogDraft, CheckerLLMOutput, CheckResult, Issue
 from ..verify import deterministic_check, iter_sentences
@@ -118,6 +118,12 @@ def check_draft(log: RunLogger, draft: BlogDraft, sources: list[dict], use_llm: 
     if len(body_claims) < config.MIN_CLAIMS:
         issues.append(Issue(ref="post", sentence="(whole post)", type="post_too_thin", severity="error", layer="deterministic",
                             detail=f"Only {len(body_claims)} factual claims; a post needs at least {config.MIN_CLAIMS}."))
+
+    # gpt-4o-mini under-writes word targets (eval drafts: 144-331 words), so length is enforced in code
+    words = word_count(draft)
+    if words < config.MIN_WORDS:
+        issues.append(Issue(ref="post", sentence="(whole post)", type="post_too_short", severity="error", layer="deterministic",
+                            detail=f"Only {words} words; a post needs at least {config.MIN_WORDS}."))
 
     error_refs = {i.ref for i in issues if i.severity == "error"}
     claim_refs = [r for r, s in sentences.items() if s.kind == "claim"]

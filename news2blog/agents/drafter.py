@@ -3,10 +3,10 @@ from langchain_core.runnables import RunnableConfig
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from .. import config, llm
-from ..prompts import DRAFTER_PATCH, DRAFTER_REVISE, DRAFTER_SYSTEM, DRAFTER_USER
+from ..prompts import DRAFTER_EXPAND, DRAFTER_PATCH, DRAFTER_REVISE, DRAFTER_SYSTEM, DRAFTER_USER
 from ..render import numbered_view, render_markdown, word_count
 from ..runlog import RunLogger
-from ..schemas import BlogDraft, Revision, Section, Sentence
+from ..schemas import BlogDraft, Expansion, Revision, Section, Sentence
 from ..verify import repair_citations
 
 
@@ -35,6 +35,7 @@ FIX_HINTS = {
     "contradicted": "Rewrite it to say exactly what the source says (see detail), or delete it.",
     "partial": "Remove the detail the sources don't state (see detail), keeping only what they do state.",
     "post_too_thin": "Write a fuller post: more well-supported factual claims from the sources.",
+    "post_too_short": "Add more sentences with facts from ALL the sources until the post is long enough.",
 }
 
 
@@ -64,6 +65,28 @@ def apply_fixes(prev: BlogDraft, rev: Revision, flagged: set[str], log: RunLogge
     return d
 
 
+def expand(prev: BlogDraft, exp: Expansion, flagged: set[str], log: RunLogger, node: str) -> BlogDraft:
+    """Apply fixes to flagged sentences, then append the new sentences to their sections. Nothing that passed changes."""
+    d = apply_fixes(prev, Revision(fixes=exp.fixes), flagged, log, node) if flagged else prev.model_copy(deep=True)
+    existing = {s.text.strip() for sec in d.sections for s in sec.sentences}
+    added = 0
+    for ns in exp.new_sentences:
+        if not ns.text.strip() or ns.text.strip() in existing or not d.sections:
+            continue
+        i = min(max(ns.section, 1), len(d.sections)) - 1
+        if i == len(d.sections) - 1 and len(d.sections) > 2:
+            i = len(d.sections) - 2  # the closing section stays short: send additions to the last body section
+        sents = d.sections[i].sentences
+        new = Sentence(text=ns.text.strip(), kind=ns.kind, source_ids=ns.source_ids, evidence=ns.evidence)
+        # never after a "Bottom line:" sentence: it closes the post
+        pos = next((k for k, s in enumerate(sents) if s.text.lower().startswith("bottom line")), len(sents))
+        sents.insert(pos, new)
+        existing.add(ns.text.strip())
+        added += 1
+    log.event(node, "expand", f"added {added} new sentence(s): {word_count(prev)} -> {word_count(d)} words", added=added)
+    return d
+
+
 def write_draft(log: RunLogger, sources: list[dict], headline: str, attempt: int,
                 prev: BlogDraft | None = None, issues: list[dict] | None = None, node: str = "drafter") -> BlogDraft:
     msgs = [
@@ -75,17 +98,26 @@ def write_draft(log: RunLogger, sources: list[dict], headline: str, attempt: int
             f"- [{i['ref']}] \"{i['sentence']}\"\n    PROBLEM ({i['type']}): {i['detail']}\n    FIX: {FIX_HINTS.get(i['type'], 'Fix it or delete the sentence.')}"
             for i in issues)
         flagged = {i["ref"] for i in issues if i["ref"] != "post"}
-        if any(i["type"] == "post_too_thin" for i in issues) or not flagged:
+        if any(i["type"] in ("post_too_thin", "post_too_short") for i in issues):
+            # too short or too few facts: keep what passed and ADD sourced sentences (the revise prompt forbids adding)
+            words = word_count(prev)
+            need = max(config.MIN_WORDS - words, 0) + 80  # aim past the floor: fixes may delete sentences
+            msgs.append(HumanMessage(DRAFTER_EXPAND.format(
+                attempt=attempt - 1, numbered=numbered_view(prev, evidence=False), issues=issue_lines, words=words,
+                min_words=config.MIN_WORDS, need=need, n_new=max(need // 20, 4), n_sections=len(prev.sections))))
+            exp = llm.structured(log, node, Expansion, msgs, temperature=0.3, max_tokens=3000)
+            draft = expand(prev, exp, flagged, log, node)
+        elif not flagged:
             # the post as a whole is the problem: full rewrite
             msgs.append(HumanMessage(DRAFTER_REVISE.format(attempt=attempt - 1, numbered=numbered_view(prev, evidence=False), issues=issue_lines)))
-            draft = llm.structured(log, node, BlogDraft, msgs, temperature=0.3, max_tokens=2500)
+            draft = llm.structured(log, node, BlogDraft, msgs, temperature=0.3, max_tokens=4000)
         else:
             # surgical: only flagged sentences may change, so a retry cannot break what already passed
             msgs.append(HumanMessage(DRAFTER_PATCH.format(attempt=attempt - 1, numbered=numbered_view(prev, evidence=False), issues=issue_lines)))
             rev = llm.structured(log, node, Revision, msgs, temperature=0.2, max_tokens=1500)
             draft = apply_fixes(prev, rev, flagged, log, node)
     else:
-        draft = llm.structured(log, node, BlogDraft, msgs, temperature=0.4, max_tokens=2500)
+        draft = llm.structured(log, node, BlogDraft, msgs, temperature=0.4, max_tokens=4000)
     fixed = repair_citations(draft, sources)
     if fixed:
         log.event(node, "cite_repair", f"code added the source that actually contains the figure/date: {', '.join(fixed)}")

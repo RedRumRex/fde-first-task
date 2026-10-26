@@ -12,9 +12,10 @@ sys.path.insert(0, str(ROOT))
 import os  # noqa: E402
 os.environ["LLM_PROVIDER"] = "groq"  # tests must not depend on the developer's .env
 os.environ.setdefault("TPM_LIMIT", "7500")
+os.environ["MIN_WORDS"] = "0"  # the small test drafts are short on purpose; length has its own test
 
 from news2blog import llm, tools  # noqa: E402
-from news2blog.schemas import (BlogDraft, CheckerLLMOutput, ClaimVerdict, EventBrief, JudgeOutput,  # noqa: E402
+from news2blog.schemas import (BlogDraft, CheckerLLMOutput, ClaimVerdict, EventBrief, Expansion, JudgeOutput, NewSentence,  # noqa: E402
                                ReporterOutput, Revision, SentenceFix)
 
 FIX = ROOT / "eval" / "fixtures" / "intel"
@@ -53,6 +54,10 @@ class FakeWorld:
             return Revision(fixes=[SentenceFix(ref=r, action="replace", text="Intel shares jumped 38% on the news.",
                                                source_ids=["S1"], evidence="the government will receive 433.3 million shares")
                                    for r in refs])
+        if schema is Expansion:  # adds two sourced sentences from the fixture, like a cooperative drafter
+            extra = [s for sec in CLEAN["sections"] for s in sec["sentences"] if s["kind"] == "claim"][:2]
+            return Expansion(new_sentences=[NewSentence(section=1, text="In detail: " + s["text"], kind="claim",
+                                                        source_ids=s["source_ids"], evidence=s["evidence"]) for s in extra])
         if schema is CheckerLLMOutput:
             post = messages[-1].content.split("POST:")[-1]
             refs = re.findall(r"^\[([T\d.]+)\] \((CLAIM|OPINION)", post, flags=re.M)
