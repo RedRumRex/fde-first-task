@@ -1,0 +1,89 @@
+{
+  "claims": [
+    {
+      "claim": "John Clarke, Michel Devoret, and John Martinis have been awarded the 2025 Nobel Prize for Physics.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that John Clarke, Michel Devoret, and John Martinis were awarded the 2025 Nobel Prize for Physics."
+    },
+    {
+      "claim": "The announcement was made on October 7, 2025, by the Royal Swedish Academy of Sciences.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 confirms the announcement date and the announcing body."
+    },
+    {
+      "claim": "The prize includes a total of SEK 11 million, approximately $1.2 million, to be shared equally among the three laureates.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 confirms the prize amount and that it is shared equally among the laureates."
+    },
+    {
+      "claim": "The trio's research has advanced the understanding of quantum mechanics by demonstrating its principles on a macroscopic scale.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm that their research demonstrated quantum mechanical properties on a macroscopic scale."
+    },
+    {
+      "claim": "Their work has paved the way for the development of superconducting quantum bits, or qubits, essential for quantum computing.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 supports this claim by stating their work led to the development of superconducting qubits."
+    },
+    {
+      "claim": "Olle Eriksson, chair of the Nobel Committee for Physics, emphasized the pervasive role of quantum mechanics in modern technology.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 includes a statement from Olle Eriksson about the role of quantum mechanics in technology."
+    },
+    {
+      "claim": "John Clarke was born in 1942 in Cambridge, UK, and has been a faculty member at UC Berkeley since 1969.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm John Clarke's birth year, place, and his tenure at UC Berkeley."
+    },
+    {
+      "claim": "Michel Devoret, born in 1953 in Paris, has held various academic positions and is currently chief scientist at Google Quantum AI.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 confirms Michel Devoret's birth year, place, and current position."
+    },
+    {
+      "claim": "John Martinis, born in 1958 in the US, co-founded the company Qolab and previously worked at Google on quantum computing.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 confirms John Martinis's birth year, place, and his professional background."
+    },
+    {
+      "claim": "The recognition of Clarke, Devoret, and Martinis highlights the critical role of quantum mechanics in emerging technologies.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require citation."
+    },
+    {
+      "claim": "For builders and technologists, this award underscores the importance of foundational research in enabling practical applications like quantum computing.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require citation."
+    },
+    {
+      "claim": "The ongoing development of quantum technologies could have far-reaching implications for various industries, including computing and communications.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require citation."
+    }
+  ],
+  "key_fact_contradictions": []
+}

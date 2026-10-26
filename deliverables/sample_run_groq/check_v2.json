@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "n_claims": 13,
+  "n_supported": 13,
+  "issues": [
+    {
+      "ref": "1.1",
+      "sentence": "President Donald Trump announced that the federal government will receive a 10% stake in Intel.",
+      "type": "evidence_not_in_source",
+      "severity": "warning",
+      "detail": "Evidence quote only loosely matches the cited source (overlap 45%).",
+      "layer": "deterministic"
+    },
+    {
+      "ref": "3.1",
+      "sentence": "Senators Ron Wyden and Jeff Merkley criticized the deal as harmful to the semiconductor sector.",
+      "type": "evidence_not_in_source",
+      "severity": "warning",
+      "detail": "Evidence quote only loosely matches the cited source (overlap 39%).",
+      "layer": "deterministic"
+    }
+  ]
+}

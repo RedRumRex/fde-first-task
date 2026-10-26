@@ -1,0 +1,134 @@
+{
+  "origin": "fixture: Intel stake (eval/fixtures/intel)",
+  "mode": "full checker (deterministic + LLM `gpt-4.1-mini`)",
+  "rows": [
+    {
+      "case": "control",
+      "required": false,
+      "planted": "Clean draft, no error planted",
+      "ref": null,
+      "checker_verdict": "PASS",
+      "outcome": "PASS (no false alarm)",
+      "caught_by": [],
+      "flags": []
+    },
+    {
+      "case": "stat",
+      "required": true,
+      "planted": "Invented statistic with a real-looking citation: \"Analysts estimate the move will lift revenue by 47% within two years.\"",
+      "ref": "1.2",
+      "checker_verdict": "REJECT",
+      "outcome": "CAUGHT",
+      "caught_by": [
+        "deterministic",
+        "llm"
+      ],
+      "flags": [
+        "[1.2] number_not_in_source (deterministic): Number '47' does not appear in any source.",
+        "[1.2] unsupported (llm): No source mentions analysts estimating a 47% revenue lift within two years."
+      ]
+    },
+    {
+      "case": "date",
+      "required": true,
+      "planted": "Wrong date: changed 'August 22' to 'August 25' in [1.1]",
+      "ref": "1.1",
+      "checker_verdict": "REJECT",
+      "outcome": "CAUGHT",
+      "caught_by": [
+        "deterministic",
+        "llm"
+      ],
+      "flags": [
+        "[1.1] date_not_in_source (deterministic): Date 'Aug 25' does not appear in any source.",
+        "[1.1] contradicted (llm): Date is August 22, 2025, not August 25, 2025."
+      ]
+    },
+    {
+      "case": "uncited",
+      "required": true,
+      "planted": "Uncited claim: \"The company's chief executive has already said he will step down once the deal closes.\"",
+      "ref": "3.1",
+      "checker_verdict": "REJECT",
+      "outcome": "CAUGHT",
+      "caught_by": [
+        "deterministic",
+        "llm"
+      ],
+      "flags": [
+        "[3.1] missing_citation (deterministic): Factual claim has no source URL.",
+        "[3.1] unsupported (llm): No source mentions Intel's chief executive stepping down once deal closes."
+      ]
+    },
+    {
+      "case": "disguised",
+      "required": false,
+      "planted": "Fact disguised as opinion: \"Regulators in Europe have already opened a formal investigation into the deal.\"",
+      "ref": "3.4",
+      "checker_verdict": "REJECT",
+      "outcome": "CAUGHT",
+      "caught_by": [
+        "llm"
+      ],
+      "flags": [
+        "[3.4] uncited_fact_in_opinion (llm): Labelled opinion but asserts a fact no source supports. No source mentions regulators in Europe opening a formal investigation into the deal."
+      ]
+    }
+  ],
+  "cost": {
+    "by_node": {
+      "checker:control": {
+        "calls": 1,
+        "input_tokens": 1755,
+        "output_tokens": 412,
+        "cost_usd": 0.001361,
+        "models": [
+          "gpt-4.1-mini"
+        ]
+      },
+      "checker:stat": {
+        "calls": 1,
+        "input_tokens": 1817,
+        "output_tokens": 437,
+        "cost_usd": 0.001426,
+        "models": [
+          "gpt-4.1-mini"
+        ]
+      },
+      "checker:date": {
+        "calls": 1,
+        "input_tokens": 1755,
+        "output_tokens": 366,
+        "cost_usd": 0.001288,
+        "models": [
+          "gpt-4.1-mini"
+        ]
+      },
+      "checker:uncited": {
+        "calls": 1,
+        "input_tokens": 1782,
+        "output_tokens": 431,
+        "cost_usd": 0.001402,
+        "models": [
+          "gpt-4.1-mini"
+        ]
+      },
+      "checker:disguised": {
+        "calls": 1,
+        "input_tokens": 1779,
+        "output_tokens": 443,
+        "cost_usd": 0.00142,
+        "models": [
+          "gpt-4.1-mini"
+        ]
+      }
+    },
+    "input_tokens": 8888,
+    "output_tokens": 2089,
+    "llm_usd": 0.006898,
+    "tavily_credits": 0.0,
+    "tavily_usd_if_paid": 0.0,
+    "total_usd": 0.006898,
+    "duration_s": 17.2
+  }
+}

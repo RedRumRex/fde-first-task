@@ -1,0 +1,32 @@
+[
+  {
+    "id": "S1",
+    "url": "https://siliconangle.com/2025/08/22/trump-says-us-government-will-take-10-stake-intel/",
+    "domain": "siliconangle.com",
+    "title": "Trump says US government will take 10% stake in Intel",
+    "date": "2025-08-22",
+    "via": "fixture",
+    "role": "primary",
+    "text": "FIXTURE EXCERPT (paraphrased from the article for offline tests). President Donald Trump said on Friday, August 22, 2025, that the US government will take a 10% stake in Intel Corp. Under the agreement, the government will receive 433.3 million shares of common stock for $20.47 apiece. The deal also gives the government the option to buy another 5% of Intel's common shares in the next five years if Intel stops owning a majority of its foundry business. The stake is tied to the CHIPS Act. Last November, the Biden administration provided Intel with $7.86 billion worth of federal grants to support its factory construction plans. The government will not take a board seat."
+  },
+  {
+    "id": "S2",
+    "url": "https://www.techrepublic.com/article/news-trump-intel-deal-chip-production/",
+    "domain": "techrepublic.com",
+    "title": "US Government Secures 10% Stake in Intel in an Unprecedented Deal",
+    "date": "2025-08-25",
+    "via": "fixture",
+    "role": "corroborating",
+    "text": "FIXTURE EXCERPT (paraphrased from the article for offline tests). The US government has acquired a 10% stake in Intel, President Donald Trump announced on Friday. The government paid no new cash; the equity is backed by roughly $8.9 billion in reallocated grant funding, including $5.7 billion from the CHIPS and Science Act and $3.2 billion from a Department of Defense program. Commerce Secretary Howard Lutnick said the deal strengthens US leadership in semiconductors. In a filing on Monday, Intel warned that the stake could cause adverse reactions from international customers, investors and business partners. More than 70% of Intel's revenue comes from buyers outside the US. The stake is passive, with no board seat."
+  },
+  {
+    "id": "S3",
+    "url": "https://www.techcentral.ie/us-takes-10-stake-in-intel/",
+    "domain": "techcentral.ie",
+    "title": "US takes 10% stake in Intel",
+    "date": "2025-08-25",
+    "via": "fixture",
+    "role": "corroborating",
+    "text": "FIXTURE EXCERPT (paraphrased from the article for offline tests). US President Donald Trump has announced that the US government will take a 10% stake in ailing chip maker Intel. The stake is created by converting previously granted subsidies into equity, an unprecedented move by the White House. The government is buying 433.3 million Intel shares at $20.47 each, for a total of about $8.9 billion. The money comes from unused CHIPS Act subsidies of $5.7 billion and the Secure Enclave programme's $3.2 billion. The government will have no direct control, with a few exceptions. Critics warn government interference could distort markets and pose risks to investors."
+  }
+]

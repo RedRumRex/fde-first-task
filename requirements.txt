@@ -1,0 +1,10 @@
+langgraph>=1.0
+langchain-core>=1.0
+langchain-groq>=1.0
+langchain-openai>=1.0   # only needed with LLM_PROVIDER=openai
+tavily-python>=0.7
+trafilatura>=2.0
+httpx>=0.27
+pydantic>=2.7
+python-dotenv>=1.0
+pytest>=8.0

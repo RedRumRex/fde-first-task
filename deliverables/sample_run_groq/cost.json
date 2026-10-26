@@ -1,0 +1,48 @@
+{
+  "by_node": {
+    "researcher": {
+      "calls": 6,
+      "input_tokens": 6807,
+      "output_tokens": 449,
+      "cost_usd": 0.000785,
+      "models": [
+        "openai/gpt-oss-120b",
+        "openai/gpt-oss-20b"
+      ]
+    },
+    "drafter": {
+      "calls": 2,
+      "input_tokens": 7085,
+      "output_tokens": 3245,
+      "cost_usd": 0.00301,
+      "models": [
+        "openai/gpt-oss-120b"
+      ]
+    },
+    "checker": {
+      "calls": 2,
+      "input_tokens": 7375,
+      "output_tokens": 2130,
+      "cost_usd": 0.001192,
+      "models": [
+        "openai/gpt-oss-20b"
+      ]
+    },
+    "reporter": {
+      "calls": 1,
+      "input_tokens": 1250,
+      "output_tokens": 266,
+      "cost_usd": 0.000174,
+      "models": [
+        "openai/gpt-oss-20b"
+      ]
+    }
+  },
+  "input_tokens": 22517,
+  "output_tokens": 6090,
+  "llm_usd": 0.005161,
+  "tavily_credits": 1.0,
+  "tavily_usd_if_paid": 0.008,
+  "total_usd": 0.013161,
+  "duration_s": 196.7
+}

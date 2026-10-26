@@ -1,0 +1,61 @@
+{
+  "claims": [
+    {
+      "claim": "Amazon Web Services (AWS) experienced a major outage on October 20, 2025, disrupting services for millions of users.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 confirms the outage occurred on October 20, 2025, and disrupted services for millions."
+    },
+    {
+      "claim": "The root cause was identified as DNS resolution issues in DynamoDB, AWS's NoSQL database service.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources 1 and 3 confirm the root cause was DNS resolution issues in DynamoDB."
+    },
+    {
+      "claim": "During the peak of the outage, Lambda invocation failures spiked, and EC2 control-plane requests were delayed.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 2 confirms that during the peak of the outage, Lambda invocation failures spiked and EC2 control-plane requests were delayed."
+    },
+    {
+      "claim": "The DNS issues stemmed from a race condition in DynamoDB's automated DNS management system, which led to cascading failures across AWS services.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources 2 and 3 confirm the DNS issues stemmed from a race condition in DynamoDB's automated DNS management system, leading to cascading failures."
+    },
+    {
+      "claim": "A timing mismatch allowed an outdated DNS plan to overwrite a newer one, resulting in an empty DNS record.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 2 confirms that a timing mismatch allowed an outdated DNS plan to overwrite a newer one, resulting in an empty DNS record."
+    },
+    {
+      "claim": "This incident highlights the fragility of DNS systems within cloud infrastructures, even for major providers like AWS.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    },
+    {
+      "claim": "For engineers, it underscores the importance of robust failover mechanisms and diversified infrastructure to mitigate such outages.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    },
+    {
+      "claim": "The cascading effects of this outage serve as a reminder that even minor technical glitches can lead to widespread service disruptions.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    }
+  ],
+  "key_fact_contradictions": []
+}

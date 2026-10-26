@@ -1,0 +1,47 @@
+{
+  "by_node": {
+    "researcher": {
+      "calls": 3,
+      "input_tokens": 2550,
+      "output_tokens": 198,
+      "cost_usd": 0.000501,
+      "models": [
+        "gpt-4o-mini"
+      ]
+    },
+    "drafter": {
+      "calls": 2,
+      "input_tokens": 10736,
+      "output_tokens": 1273,
+      "cost_usd": 0.002374,
+      "models": [
+        "gpt-4o-mini"
+      ]
+    },
+    "checker": {
+      "calls": 2,
+      "input_tokens": 10119,
+      "output_tokens": 1149,
+      "cost_usd": 0.005886,
+      "models": [
+        "gpt-4.1-mini"
+      ]
+    },
+    "reporter": {
+      "calls": 1,
+      "input_tokens": 1216,
+      "output_tokens": 198,
+      "cost_usd": 0.000301,
+      "models": [
+        "gpt-4o-mini"
+      ]
+    }
+  },
+  "input_tokens": 24621,
+  "output_tokens": 2818,
+  "llm_usd": 0.009063,
+  "tavily_credits": 1.0,
+  "tavily_usd_if_paid": 0.008,
+  "total_usd": 0.017063,
+  "duration_s": 44.3
+}

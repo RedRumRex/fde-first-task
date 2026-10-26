@@ -1,0 +1,26 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	researcher(researcher)
+	drafter(drafter)
+	plant_error(plant_error)
+	checker(checker)
+	reporter(reporter)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> researcher;
+	checker -.-> drafter;
+	checker -.-> reporter;
+	drafter -.-> checker;
+	drafter -.-> plant_error;
+	plant_error --> checker;
+	researcher -.-> drafter;
+	researcher -.-> reporter;
+	reporter --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
+

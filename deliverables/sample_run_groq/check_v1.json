@@ -1,0 +1,31 @@
+{
+  "passed": false,
+  "n_claims": 13,
+  "n_supported": 12,
+  "issues": [
+    {
+      "ref": "3.1",
+      "sentence": "Senators Ron Wyden and Jeff Merkley criticized the deal as harmful to the semiconductor sector.",
+      "type": "evidence_not_in_source",
+      "severity": "warning",
+      "detail": "Evidence quote only loosely matches the cited source (overlap 32%).",
+      "layer": "deterministic"
+    },
+    {
+      "ref": "4.2",
+      "sentence": "If the warrant is exercised, the government's ownership could rise to roughly 15%, potentially influencing strategic decisions without formal voting rights.",
+      "type": "uncited_fact_in_opinion",
+      "severity": "error",
+      "detail": "Opinion sentence introduces figures/dates ['15'] that no cited claim in the post states.",
+      "layer": "deterministic"
+    },
+    {
+      "ref": "2.2",
+      "sentence": "The CHIPS and Science Act, signed in 2021, set aside $53 billion for semiconductor incentives.",
+      "type": "contradicted",
+      "severity": "error",
+      "detail": "The claim says the CHIPS and Science Act was signed in 2021, but S3 states it was signed in 2022.",
+      "layer": "llm"
+    }
+  ]
+}

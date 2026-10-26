@@ -1,0 +1,78 @@
+{
+  "origin": "fixture: Intel stake (eval/fixtures/intel)",
+  "mode": "deterministic layer only",
+  "rows": [
+    {
+      "case": "control",
+      "required": false,
+      "planted": "Clean draft, no error planted",
+      "ref": null,
+      "checker_verdict": "PASS",
+      "outcome": "PASS (no false alarm)",
+      "caught_by": [],
+      "flags": []
+    },
+    {
+      "case": "stat",
+      "required": true,
+      "planted": "Invented statistic with a real-looking citation: \"Analysts estimate the move will lift revenue by 47% within two years.\"",
+      "ref": "1.2",
+      "checker_verdict": "REJECT",
+      "outcome": "CAUGHT",
+      "caught_by": [
+        "deterministic"
+      ],
+      "flags": [
+        "[1.2] number_not_in_source (deterministic): Number '47' does not appear in any source."
+      ]
+    },
+    {
+      "case": "date",
+      "required": true,
+      "planted": "Wrong date: changed 'August 22' to 'August 25' in [1.1]",
+      "ref": "1.1",
+      "checker_verdict": "REJECT",
+      "outcome": "CAUGHT",
+      "caught_by": [
+        "deterministic"
+      ],
+      "flags": [
+        "[1.1] date_not_in_source (deterministic): Date 'Aug 25' does not appear in any source."
+      ]
+    },
+    {
+      "case": "uncited",
+      "required": true,
+      "planted": "Uncited claim: \"The company's chief executive has already said he will step down once the deal closes.\"",
+      "ref": "3.1",
+      "checker_verdict": "REJECT",
+      "outcome": "CAUGHT",
+      "caught_by": [
+        "deterministic"
+      ],
+      "flags": [
+        "[3.1] missing_citation (deterministic): Factual claim has no source URL."
+      ]
+    },
+    {
+      "case": "disguised",
+      "required": false,
+      "planted": "Fact disguised as opinion: \"Regulators in Europe have already opened a formal investigation into the deal.\"",
+      "ref": "3.4",
+      "checker_verdict": "PASS",
+      "outcome": "n/a offline (needs LLM layer)",
+      "caught_by": [],
+      "flags": []
+    }
+  ],
+  "cost": {
+    "by_node": {},
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "llm_usd": 0,
+    "tavily_credits": 0.0,
+    "tavily_usd_if_paid": 0.0,
+    "total_usd": 0.0,
+    "duration_s": 0.0
+  }
+}

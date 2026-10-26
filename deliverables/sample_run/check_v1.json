@@ -1,0 +1,63 @@
+{
+  "passed": false,
+  "n_claims": 10,
+  "n_supported": 6,
+  "issues": [
+    {
+      "ref": "1.1",
+      "sentence": "On August 25, 2025, President Donald Trump announced that the U.S. government will acquire a 10% stake in Intel Corporation.",
+      "type": "number_not_in_source",
+      "severity": "error",
+      "detail": "Number '2025' does not appear in any source.",
+      "layer": "deterministic"
+    },
+    {
+      "ref": "1.1",
+      "sentence": "On August 25, 2025, President Donald Trump announced that the U.S. government will acquire a 10% stake in Intel Corporation.",
+      "type": "date_not_in_source",
+      "severity": "error",
+      "detail": "Date 'Aug 25' does not appear in any source.",
+      "layer": "deterministic"
+    },
+    {
+      "ref": "1.2",
+      "sentence": "The government will receive 433.3 million shares at $20.47 each, totaling approximately $8.9 billion.",
+      "type": "number_not_in_source",
+      "severity": "error",
+      "detail": "Number '8.9 billion' does not appear in any source.",
+      "layer": "deterministic"
+    },
+    {
+      "ref": "3.1",
+      "sentence": "The move has received mixed reactions, with some lawmakers supporting it while others express concern about government overreach.",
+      "type": "evidence_not_in_source",
+      "severity": "warning",
+      "detail": "Evidence quote only loosely matches the cited source (overlap 33%).",
+      "layer": "deterministic"
+    },
+    {
+      "ref": "3.3",
+      "sentence": "Supporters argue that the investment is necessary for national security and to revitalize the U.S. semiconductor industry.",
+      "type": "evidence_not_in_source",
+      "severity": "error",
+      "detail": "Evidence quote not found in cited source (overlap 0%).",
+      "layer": "deterministic"
+    },
+    {
+      "ref": "1.1",
+      "sentence": "On August 25, 2025, President Donald Trump announced that the U.S. government will acquire a 10% stake in Intel Corporation.",
+      "type": "contradicted",
+      "severity": "error",
+      "detail": "The announcement date is not August 25, 2025; S1 and S2 mention the announcement was in August 2023.",
+      "layer": "llm"
+    },
+    {
+      "ref": "2.1",
+      "sentence": "The acquisition is part of the CHIPS Act, which aims to bolster domestic semiconductor manufacturing.",
+      "type": "partial",
+      "severity": "error",
+      "detail": "S2 links the acquisition to CHIPS Act and pandemic interest but does not explicitly say 'part of the CHIPS Act.'",
+      "layer": "llm"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "claims": [
+    {
+      "claim": "Henri Kagan and Kenso Soai were awarded the 2026 Nobel Prize in Chemistry on October 7, 2026.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that Henri Kagan and Kenso Soai won the 2026 Nobel Prize in Chemistry on October 7, 2026."
+    },
+    {
+      "claim": "The Royal Swedish Academy of Sciences announced the award, recognizing their significant contributions to the field of chemistry.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that the Royal Swedish Academy of Sciences announced the award for their contributions to chemistry."
+    },
+    {
+      "claim": "Kagan and Soai's research addresses homochirality, the preference for one mirror-image form of a molecule in biological systems.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 2 confirms that their research addresses homochirality."
+    },
+    {
+      "claim": "Kagan is often referred to as the 'father' of asymmetric catalysis, having developed methods in the 1980s.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 2 states that Kagan is regarded as the 'father' of asymmetric catalysis and developed methods in the 1980s."
+    },
+    {
+      "claim": "Soai demonstrated a reaction in 1995 that accelerates its own formation while amplifying molecular handedness, known as the Soai reaction.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 2 confirms that Soai demonstrated a reaction in 1995 known as the Soai reaction."
+    },
+    {
+      "claim": "Their discoveries are crucial for pharmaceutical development, as different molecular forms can interact differently with the body.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 2 supports the claim that their discoveries are important for pharmaceutical development."
+    },
+    {
+      "claim": "The winners will share a prize of 12 million Swedish crowns, approximately $1.2 million.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the prize amount and its approximate value in USD."
+    },
+    {
+      "claim": "The Nobel ceremony will take place in Stockholm on December 10, 2026, the anniversary of Alfred Nobel’s death.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources confirm the date and location of the Nobel ceremony."
+    },
+    {
+      "claim": "The recognition of Kagan and Soai highlights the importance of foundational chemistry in understanding molecular behavior.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    },
+    {
+      "claim": "Their work not only advances scientific knowledge but also has practical implications in drug development and other chemical applications.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    },
+    {
+      "claim": "For chemists, this award underscores the ongoing relevance of asymmetric synthesis in creating effective pharmaceuticals.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    }
+  ],
+  "key_fact_contradictions": []
+}

@@ -1,0 +1,156 @@
+{
+  "description": "News-to-blog test set. Each case is a news URL plus 2-3 hand-verified key facts from that article (checked 2026-10-25). The judge fails a post that contradicts a key fact. Case 14 is a negative case: the link is dead and the system must fail cleanly.",
+  "cases": [
+    {
+      "id": "c01_intel_stake",
+      "url": "https://siliconangle.com/2025/08/22/trump-says-us-government-will-take-10-stake-intel/",
+      "event": "US government takes ~10% stake in Intel",
+      "event_date": "2025-08-22",
+      "key_facts": [
+        "The government receives 433.3 million shares of Intel common stock at $20.47 each.",
+        "The deal includes a warrant to buy another 5% of Intel's shares within five years.",
+        "The Biden administration had provided Intel with $7.86 billion in federal grants."
+      ]
+    },
+    {
+      "id": "c02_nobel_physics_2025",
+      "url": "https://physicsworld.com/a/john-clarke-michel-devoret-and-john-martinis-win-the-2025-nobel-prize-for-physics/",
+      "event": "2025 Nobel Prize in Physics to Clarke, Devoret and Martinis",
+      "event_date": "2025-10-07",
+      "key_facts": [
+        "The prize was awarded for the discovery of macroscopic quantum mechanical tunnelling and energy quantization in an electric circuit.",
+        "The award is SEK 11m (about $1.2m), shared equally by the three winners.",
+        "The prize is presented at a ceremony in Stockholm on 10 December."
+      ]
+    },
+    {
+      "id": "c03_anthropic_settlement",
+      "url": "https://courthousenews.com/anthropic-to-pay-1-5-billion-copyright-settlement-to-authors-publishers/",
+      "event": "Final approval of Anthropic's $1.5 billion copyright settlement with authors",
+      "event_date": "2026-07-20",
+      "key_facts": [
+        "The settlement is $1.5 billion.",
+        "U.S. District Judge Araceli Martínez-Olguín ruled the settlement fair, reasonable and adequate.",
+        "Attorney fees were about $101.56 million, roughly 7% of the fund."
+      ]
+    },
+    {
+      "id": "c04_nvidia_5t",
+      "url": "https://www.entrepreneur.com/business-news/nvidia-becomes-the-first-to-pass-5-trillion-in-market-value",
+      "event": "Nvidia becomes first company worth $5 trillion",
+      "event_date": "2025-10-29",
+      "key_facts": [
+        "Nvidia needed a share price of $205.76 for a $5 trillion market value.",
+        "Microsoft and Apple were each valued at about $4 trillion.",
+        "Nvidia stock had risen more than 50% year to date."
+      ]
+    },
+    {
+      "id": "c05_google_chrome_ruling",
+      "url": "https://www.thejakartapost.com/business/2025/09/03/google-not-required-to-sell-chrome-in-antitrust-victory.html",
+      "event": "Judge rules Google does not have to sell Chrome",
+      "event_date": "2025-09-02",
+      "key_facts": [
+        "Judge Amit Mehta rejected the government's demand that Google sell Chrome.",
+        "In August 2024 Mehta had found Google unlawfully protected its search dominance.",
+        "Alphabet shares rose about 7.5 percent in after-hours trading."
+      ]
+    },
+    {
+      "id": "c06_louvre_heist",
+      "url": "https://globalnews.ca/news/11485473/louvre-jewels-robbery-theft-museum",
+      "event": "Louvre crown jewels heist",
+      "event_date": "2025-10-19",
+      "key_facts": [
+        "Thieves stole eight items from two display cases.",
+        "The raid lasted less than eight minutes in total.",
+        "It happened about 250 metres from the Mona Lisa, around 30 minutes after opening."
+      ]
+    },
+    {
+      "id": "c07_cloudflare_outage",
+      "url": "https://cyberinsider.com/cloudflare-blames-bot-management-system-for-yesterdays-widespread-outage/",
+      "event": "Cloudflare global outage caused by bot management feature file",
+      "event_date": "2025-11-18",
+      "key_facts": [
+        "The global outage happened on November 18, 2025.",
+        "It began at 11:20 UTC.",
+        "The proxy hit a hardcoded limit of 200 features when the feature file grew too large."
+      ]
+    },
+    {
+      "id": "c08_aws_outage",
+      "url": "https://cybersecuritynews.com/massive-aws-outage/amp",
+      "event": "AWS US-EAST-1 outage root cause",
+      "event_date": "2025-10-20",
+      "key_facts": [
+        "Problems started at 11:49 PM PDT on October 19 in US-EAST-1.",
+        "DynamoDB was restored at 2:24 AM PDT on October 20.",
+        "Normal operations were fully restored by 3:01 PM PDT."
+      ]
+    },
+    {
+      "id": "c09_axiom4_shukla",
+      "url": "https://scroll.in/latest/1083856/axiom-4-space-flight-with-indias-shubhanshu-shukla-on-board-lifts-off",
+      "event": "Axiom-4 launches with India's Shubhanshu Shukla",
+      "event_date": "2025-06-25",
+      "key_facts": [
+        "The mission lifted off from Launch Complex 39A at 2:31 am ET on June 25.",
+        "The launch was originally scheduled for June 11 and postponed after a liquid oxygen leak.",
+        "ISRO reportedly paid Rs 500 crore for the seat and training."
+      ]
+    },
+    {
+      "id": "c10_meta_scale",
+      "url": "https://www.silicon.co.uk/cloud/ai/meta-invests-14-3bn-in-ai-firm-scale-poaches-ceo-618234",
+      "event": "Meta invests $14.3bn in Scale AI and hires CEO Alexandr Wang",
+      "event_date": "2025-06-13",
+      "key_facts": [
+        "Meta is investing $14.3bn in Scale.",
+        "The deal values Scale at over $29 billion.",
+        "Scale generated $870m in revenue the previous year."
+      ]
+    },
+    {
+      "id": "c11_openai_restructure",
+      "url": "https://www.aljazeera.com/economy/2025/10/28/openai-restructures-into-public-benefit-firm-microsoft-takes-27-stake",
+      "event": "OpenAI restructures into a public benefit corporation; Microsoft takes 27%",
+      "event_date": "2025-10-28",
+      "key_facts": [
+        "Microsoft holds about 27 percent of OpenAI Group PBC, worth about $135bn.",
+        "OpenAI will buy $250bn of Microsoft Azure services.",
+        "The nonprofit OpenAI Foundation controls the PBC."
+      ]
+    },
+    {
+      "id": "c12_starship_flight10",
+      "url": "https://earthsky.org/human-world/starship-redeems-itself-in-spectacular-10th-test-flight/",
+      "event": "SpaceX Starship 10th test flight",
+      "event_date": "2025-08-26",
+      "key_facts": [
+        "Starship launched from Starbase on the Texas Gulf Coast at 18:30 CDT.",
+        "All 33 Super Heavy booster engines ignited at launch.",
+        "The upper stage deployed eight dummy Starlink satellites."
+      ]
+    },
+    {
+      "id": "c13_nobel_chem_2026",
+      "url": "https://www.khaleejtimes.com/world/henri-kagan-kenso-soai-win-2026-nobel-chemistry-prize",
+      "event": "2026 Nobel Prize in Chemistry to Henri Kagan and Kenso Soai",
+      "event_date": "2026-10-07",
+      "key_facts": [
+        "Henri Kagan and Kenso Soai won the 2026 Nobel Prize in Chemistry.",
+        "The prize was for the discovery of non-linear effects and autocatalysis in asymmetric organic synthesis.",
+        "The winners share 12 million Swedish crowns (about $1.2 million)."
+      ]
+    },
+    {
+      "id": "c14_dead_link",
+      "url": "https://www.example-news-site-that-does-not-exist-2026.com/tech/ai-breakthrough",
+      "event": "NEGATIVE CASE: dead link",
+      "event_date": null,
+      "expect_failure": true,
+      "key_facts": []
+    }
+  ]
+}

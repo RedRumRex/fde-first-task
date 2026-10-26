@@ -1,0 +1,89 @@
+{
+  "claims": [
+    {
+      "claim": "On November 18, 2025, Cloudflare experienced a significant global outage that disrupted access to thousands of websites and services, including X and ChatGPT.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the date and the impact on services including X and ChatGPT."
+    },
+    {
+      "claim": "The outage began at 11:20 UTC and lasted for several hours, with full recovery achieved by 17:06 UTC.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the start time, duration, and recovery time of the outage."
+    },
+    {
+      "claim": "During this time, users encountered HTTP 500 errors when trying to access Cloudflare-protected sites.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that users encountered HTTP 500 errors during the outage."
+    },
+    {
+      "claim": "Cloudflare attributed the outage to a misconfigured internal feature file within its Bot Management system.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that the outage was attributed to a misconfigured feature file in the Bot Management system."
+    },
+    {
+      "claim": "A permissions change in the ClickHouse database led to duplicate data in the feature file, which exceeded the system's size limit.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that a permissions change in the ClickHouse database led to duplicate data, causing the feature file to exceed the size limit."
+    },
+    {
+      "claim": "This misconfiguration caused the core proxy services to crash, leading to cascading failures across Cloudflare's network.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that the misconfiguration caused core proxy services to crash, leading to cascading failures."
+    },
+    {
+      "claim": "The outage severely affected Cloudflare's core CDN and security services, as well as its CAPTCHA alternative, Turnstile.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that the outage affected core CDN and security services, and Turnstile."
+    },
+    {
+      "claim": "Other services like Workers KV and Cloudflare Access also experienced significant disruptions, including authentication failures.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that Workers KV and Cloudflare Access experienced disruptions and authentication failures."
+    },
+    {
+      "claim": "Cloudflare has labeled this incident as its most severe outage since 2019, reflecting significant architectural shortcomings.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm that Cloudflare labeled this as the most severe outage since 2019 and acknowledged architectural shortcomings."
+    },
+    {
+      "claim": "This outage highlights the vulnerabilities in centralized infrastructure, particularly how internal configurations can lead to widespread disruptions.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    },
+    {
+      "claim": "For builders, this incident underscores the importance of robust configuration management and the need for fail-safes in critical systems.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    },
+    {
+      "claim": "Cloudflare's response and planned improvements may serve as a case study for other companies relying on similar architectures.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require a citation."
+    }
+  ],
+  "key_fact_contradictions": []
+}

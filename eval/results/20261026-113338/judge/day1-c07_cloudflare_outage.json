@@ -1,0 +1,89 @@
+{
+  "claims": [
+    {
+      "claim": "On November 18, 2025, Cloudflare experienced a significant global outage that disrupted access to numerous websites and services.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The statement is supported by both Source 1 and Source 2, which confirm the date and the global impact of the outage."
+    },
+    {
+      "claim": "The outage began at 11:20 UTC and lasted several hours, causing HTTP 500 errors across Cloudflare's network.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources 1 and 2 confirm the start time of the outage and the occurrence of HTTP 500 errors."
+    },
+    {
+      "claim": "Cloudflare attributed the outage to a misconfigured internal feature file used by its Bot Management system.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources 1 and 2 both attribute the outage to a misconfigured feature file in the Bot Management system."
+    },
+    {
+      "claim": "The issue arose when a change in database permissions caused duplicate entries in a feature file, which exceeded its size limit.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources 1 and 2 describe the issue as being caused by a change in database permissions leading to duplicate entries in a feature file."
+    },
+    {
+      "claim": "This misconfiguration led to the failure of Cloudflare's core proxy services, impacting its ability to route traffic effectively.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources 1 and 2 confirm that the misconfiguration led to the failure of core proxy services."
+    },
+    {
+      "claim": "Cloudflare's network architecture relies on a central proxy system that processes incoming requests and applies security policies.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 describes Cloudflare's network architecture as relying on a central proxy system."
+    },
+    {
+      "claim": "The outage affected a wide range of Cloudflare services, including its CAPTCHA alternative, Workers KV, and email security.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Sources 1 and 2 list the affected services, including CAPTCHA, Workers KV, and email security."
+    },
+    {
+      "claim": "Cloudflare labeled this incident as its most severe outage since 2019, acknowledging significant architectural shortcomings.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 states that Cloudflare labeled this as its most severe outage since 2019 and acknowledged architectural shortcomings."
+    },
+    {
+      "claim": "The incident caused major disruptions worldwide, translating to significant financial impacts for affected businesses.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "Source 1 mentions the worldwide disruptions and significant financial impacts."
+    },
+    {
+      "claim": "This outage highlights the vulnerabilities inherent in centralized internet infrastructure, particularly regarding configuration management.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation of the incident's significance and does not require factual support."
+    },
+    {
+      "claim": "For builders, the bigger question is how to create more resilient systems that can withstand similar failures in the future.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation and does not require factual support."
+    },
+    {
+      "claim": "Cloudflare's rapid recovery demonstrates operational maturity, yet the incident serves as a reminder of the fragility of complex systems.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation of Cloudflare's response and the incident's implications."
+    }
+  ],
+  "key_fact_contradictions": []
+}

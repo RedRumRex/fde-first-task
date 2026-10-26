@@ -1,0 +1,96 @@
+{
+  "claims": [
+    {
+      "claim": "Henri Kagan and Kenso Soai won the 2026 Nobel Prize in Chemistry on October 7, 2026.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The date and event are confirmed by the sources."
+    },
+    {
+      "claim": "The Royal Swedish Academy of Sciences awarded them for their work on asymmetric organic synthesis.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the award was for work on asymmetric organic synthesis."
+    },
+    {
+      "claim": "They will share a prize of 12 million Swedish crowns, approximately $1.2 million.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The prize amount and its approximate USD value are confirmed by the sources."
+    },
+    {
+      "claim": "Kagan and Soai's discoveries address the concept of chirality, where molecules exist in mirror-image forms.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm their work addresses chirality and mirror-image molecules."
+    },
+    {
+      "claim": "Their research explains why living organisms predominantly use one mirror-image form of certain molecules.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm their research explains the predominance of one mirror-image form in living organisms."
+    },
+    {
+      "claim": "Kagan's 1986 discovery allowed for a greater excess of one mirror-image molecule in reactions.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm Kagan's 1986 discovery allowed for a greater excess of one mirror-image molecule."
+    },
+    {
+      "claim": "Soai's 1995 research led to the first chemical reaction capable of producing a single mirror-image molecule through autocatalysis.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm Soai's 1995 research led to a reaction producing a single mirror-image molecule through autocatalysis."
+    },
+    {
+      "claim": "Kagan and Soai, born 20 years apart, represent different generations in chemistry.",
+      "kind": "fact",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources confirm the 20-year age difference and generational representation."
+    },
+    {
+      "claim": "Despite their different backgrounds, both contributed significantly to the understanding of molecular asymmetry.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources support their significant contributions to molecular asymmetry."
+    },
+    {
+      "claim": "Their collaboration highlights the cumulative nature of scientific discovery across generations.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "The statement is interpretative and not directly supported by the sources."
+    },
+    {
+      "claim": "The work of Kagan and Soai is crucial for pharmaceutical chemistry, where chirality affects drug efficacy.",
+      "kind": "interpretation",
+      "has_citation": true,
+      "verdict": "supported",
+      "reason": "The sources support the importance of their work in pharmaceutical chemistry."
+    },
+    {
+      "claim": "Their findings could lead to safer and more effective medications by isolating the desired molecular forms.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is a prediction not directly supported by the sources."
+    },
+    {
+      "claim": "This Nobel Prize emphasizes the importance of foundational research in understanding complex chemical behaviors.",
+      "kind": "interpretation",
+      "has_citation": false,
+      "verdict": "unsupported",
+      "reason": "This is an interpretation not directly supported by the sources."
+    }
+  ],
+  "key_fact_contradictions": []
+}
