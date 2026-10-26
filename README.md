@@ -249,7 +249,6 @@ We followed the sprint plan: **checker prompt and test set first, then a working
 fde-first/
 ├── README.md                  ← you are here
 ├── discovery_brief.md         ← deliverable 1: user, metric, risks, scope
-├── demo.md                    ← deliverable 6: 2-minute speech + 5-minute run-of-show
 ├── tone_guide.md              ← house style, derived from the customer's own blog
 ├── run.py                     ← CLI: run one URL (Day 2, Day 1, or with a planted error)
 ├── run_all.sh                 ← all deliverables in one go
@@ -346,6 +345,6 @@ Everything is set in `.env` (see [`.env.example`](.env.example)):
 | 3 planted-error tests the checker catches | [`eval/results/planted_errors.md`](eval/results/planted_errors.md), [`planted_errors_real_run.md`](eval/results/planted_errors_real_run.md), [`tests/test_planted_offline.py`](tests/test_planted_offline.py) |
 | Run report from the reporter agent | [`deliverables/sample_run/report.md`](deliverables/sample_run/report.md) |
 | Log of a full run, with cost | [`deliverables/sample_run/log.jsonl`](deliverables/sample_run/log.jsonl), [`cost.json`](deliverables/sample_run/cost.json) |
-| Demo (brief, live run, planted error, Day 1 vs Day 2, a failure) | [`demo.md`](demo.md) |
+| Demo (brief, live run, planted error, Day 1 vs Day 2, a failure) | Presented live, using [`discovery_brief.md`](discovery_brief.md), a live `run.py --plant date` run, [`eval/results/scoreboard.md`](eval/results/scoreboard.md) and §7 of this README |
 
 **Ground rules followed:** a human approves every output, and nothing is published or sent automatically · no personal data, only public news · API keys stay in `.env`, which is git-ignored.

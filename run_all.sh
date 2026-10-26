@@ -22,7 +22,7 @@ echo "copied $LATEST -> deliverables/sample_run"
 echo "== 4/5 planted errors on the real approved draft from that run =="
 python -m eval.planted_errors --from-run deliverables/sample_run || true
 
-echo "== 5/5 test set: Day 1 vs Day 2 (fills the score table in demo.md) =="
+echo "== 5/5 test set: Day 1 vs Day 2 (writes eval/results/scoreboard.md) =="
 python -m eval.run_eval --workers 3
 
 echo
@@ -31,4 +31,3 @@ echo "  discovery_brief.md"
 echo "  eval/test_set.json + eval/results/scoreboard.md"
 echo "  eval/results/planted_errors.md"
 echo "  deliverables/sample_run/report.md, log.jsonl, cost.json"
-echo "  demo.md"

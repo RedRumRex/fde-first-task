@@ -23,7 +23,10 @@ runs/
 *.tgz
 eval/results/planted_runs/
 
-# eval result folders: keep only the final scored run (the one in demo.md / scoreboard.md)
+# eval result folders: keep only the final scored run (the one in scoreboard.md)
 eval/results/*/
 !eval/results/20261026-121837/
 !eval/results/20261026-123526/
+
+# personal demo script, kept locally
+demo.md
