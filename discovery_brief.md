@@ -1,6 +1,6 @@
 # Discovery Brief: News to Blog Writer (Task B)
 
-**Team:** Yashraj Sharma · **Stack:** Python, LangGraph, Groq or OpenAI (switchable in `.env`; the drafter and checker are always different models), Tavily · **Sprint:** AI FDE Fellowship, Sprint 1
+**Team:** Yashraj Sharma · **Stack:** Python, LangGraph, OpenAI (Groq also supported, switchable in `.env`; the drafter and checker are always different models), Tavily · **Sprint:** AI FDE Fellowship, Sprint 1
 
 ## 1. User and workflow
 
@@ -35,7 +35,19 @@ A post is **good** when every factual claim has a source URL **and** an independ
 | **Cost per run** (LLM + search) | < $0.05 (and $0 on Groq's free tier) |
 | **Dead-link case** | Fails cleanly with a report; no post is produced |
 
-The judge is a different prompt and a different model from the checker, so the checker never grades itself. The checker (`gpt-oss-20b`) is also a different model from the drafter (`gpt-oss-120b`). A claim the checker gives no verdict on counts as a failure, never a pass.
+The judge is a different prompt and a different model from the checker, so the checker never grades itself. The checker (`gpt-4.1-mini`) is also a different model from the drafter (`gpt-4o-mini`), and the judge is `gpt-4o`. (On Groq the pairing is `gpt-oss-20b` checking `gpt-oss-120b`.) A claim the checker gives no verdict on counts as a failure, never a pass.
+
+### Results against these targets (final eval, run `20261026-121837`)
+
+| Target | Day 2 result | Met? |
+|---|---|---|
+| ≥ 10 of 13 news cases pass | 11 of 13 (Day 1 single agent: 10 of 13) | ✅ |
+| 0 bad posts shipped | Judge flagged 2. Hand review: 1 real error (c05 said "September 2, 2024"; the ruling was in 2025). The other (c08) follows its cited source, which disagrees with another source | ❌ missed, fixed afterwards |
+| 3 of 3 planted errors caught, control passes | All caught on the fixture and on a real draft; the clean control passes | ✅ |
+| Cost per run < $0.05 | $0.025 (Day 1: $0.017) | ✅ |
+| Dead link fails cleanly | Yes, no post produced | ✅ |
+
+**What we did about the miss:** "2024" appeared in the source, but in an unrelated sentence, so checking that "the number is in the source" wasn't enough. A new code rule now requires a full date's year to match the year the source gives for that date (or the source's publication year). Replaying it on all 52 saved drafts flags exactly this one, with no false alarms, and a live re-run of c05 now writes 2025.
 
 ## 4. Sources and risks
 
@@ -50,7 +62,7 @@ The judge is a different prompt and a different model from the checker, so the c
 
 **In:** one URL in, a 350 to 500 word markdown post out, with an inline citation on every claim. Four LangGraph roles with a retry loop (max 3 drafts), a checker with two layers (deterministic number/date/quote checks plus an LLM claim-by-claim check), the run report, JSONL logs with cost, a 14-case test set, a Day 1 single-agent baseline, and 3 planted-error tests.
 
-**Constraint:** Groq's free tier allows about 8K tokens/minute per model, so sources are trimmed to 3,000 characters each and posts are kept short.
+**Constraint:** cost. The final eval ran on OpenAI with a small budget, so every run had to stay under $0.05 and the full 28-run eval under about $1. We started on Groq's free tier (about 8K tokens/minute per model, sources cut to 3,000 characters); on OpenAI, sources get up to 12,000 characters each.
 
 **Out:** images, SEO, publishing to a CMS, languages other than English, paywalled sources, a UI, and the real tone guide (we're using a placeholder until the customer shares theirs).
 
